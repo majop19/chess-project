@@ -6,7 +6,6 @@ import ProblemsRouter from "#back/routes/problems/problems.route";
 import passport from "passport";
 import dotenv from "dotenv";
 import { connectDB } from "#back/db/connectDB";
-import { root } from "#back/root";
 import compression from "compression";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
@@ -25,6 +24,7 @@ async function startServer() {
   dotenv.config();
 
   const isProduction = process.env.NODE_ENV === "production";
+  const root = `${__dirname}/..`;
   const app = express();
   const nodeServer = createServer(app);
   const io = new Server<ServerType>(nodeServer);

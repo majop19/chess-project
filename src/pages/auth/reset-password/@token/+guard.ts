@@ -1,4 +1,4 @@
-import { User } from "#back/models/user.model";
+import { User } from "#front/models/user.model";
 import { IUser } from "#front/utils/types";
 import { render } from "vike/abort";
 import { PageContext } from "vike/types";
