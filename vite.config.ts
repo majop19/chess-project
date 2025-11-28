@@ -25,7 +25,7 @@ export default defineConfig({
   },
   define: {
     vike: {
-      default: {},
+      _default: {},
     },
   },
 });
