@@ -1,12 +1,11 @@
-//@ts-nocheck
-import vikeReact from "vike-react/config";
-import { type Config } from "vike/types";
+import vikeReact from "vike-react/config" with {type: "pointer"}
+import { type Config } from "vike/types" with {type: "pointer"}
 
-const config: Config = {
+export default {
   extends: [vikeReact],
   stream: "node",
   passToClient: ["user", "loginAccessError"],
   title: "chessApp Project",
-};
+} satisfies Config
 
-export default config;
+
