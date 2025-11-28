@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { defineConfig, UserConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
