@@ -1,10 +1,8 @@
-import vikeReact from "vike-react/config" with {type: "pointer"}
+import vikeReact from "vike-react/config";
 
 export default {
   extends: [vikeReact],
   stream: "node",
   passToClient: ["user", "loginAccessError"],
   title: "chessApp Project",
-}
-
-
+} satisfies import("vike/types").Config;
