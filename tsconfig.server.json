@@ -1,24 +1,20 @@
 {
   "compilerOptions": {
     "composite": true,
-
     "outDir": "dist/server",
     "rootDir": "src",
-
     "baseUrl": ".",
     "paths": {
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
     },
-
     "target": "ES2020",
     "module": "CommonJS",
     "moduleResolution": "node",
-
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true
   },
   "include": ["src/server"],
-  "exclude": ["src/pages", "src/client"]
+  "exclude": ["src/pages", "src/client", "**/*.d.ts"]
 }

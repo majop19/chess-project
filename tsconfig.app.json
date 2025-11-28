@@ -17,5 +17,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/client", "src/pages"]
+  "include": ["src/client", "src/pages"],
+  "exclude": ["**/*.d.ts"]
 }
