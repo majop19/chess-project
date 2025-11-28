@@ -24,6 +24,8 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true },
   },
   define: {
-    default: {},
+    vike: {
+      default: {},
+    },
   },
 });

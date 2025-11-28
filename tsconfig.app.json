@@ -6,14 +6,11 @@
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
     },
-
     "target": "ES2020",
     "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "module": "ESNext",
-
     "jsx": "react-jsx",
     "moduleResolution": "bundler",
-
     "strict": true,
     "skipLibCheck": true
   },
