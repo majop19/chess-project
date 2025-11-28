@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
-import { SocketClientType } from "#back/socket.io/socket.types";
+import { SocketClientType } from "#front/utils/socket.types";
 import { ObjectId } from "mongoose";
 import { useBoardOrientationProvider } from "#front/hooks/use-context";
 import {

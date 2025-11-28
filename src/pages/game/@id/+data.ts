@@ -1,4 +1,4 @@
-import { Game } from "#back/models/game.model";
+import { Game } from "#front/models/game.model";
 import { type IGame } from "#front/utils/types";
 import { render } from "vike/abort";
 import { type PageContextServer } from "vike/types";

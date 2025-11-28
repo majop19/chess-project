@@ -9,7 +9,7 @@ import { AlarmClock } from "lucide-react";
 import { ReactNode, useEffect } from "react";
 import { useData } from "vike-react/useData";
 import { GameData } from "./+data";
-import { SocketClientType } from "#back/socket.io/socket.types";
+import { SocketClientType } from "#front/utils/socket.types";
 import { render } from "vike/abort";
 import { ObjectId } from "mongoose";
 import { useChessGameContext } from "#front/context/ChessGameContext";

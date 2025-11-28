@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { GameData } from "./+data";
 import { useData } from "vike-react/useData";
-import { SocketClientType } from "#back/socket.io/socket.types";
+import { SocketClientType } from "#front/utils/socket.types";
 import {
   Card,
   CardContent,

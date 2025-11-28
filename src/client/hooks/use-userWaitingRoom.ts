@@ -1,4 +1,4 @@
-import { SocketClientType } from "#back/socket.io/socket.types";
+import { SocketClientType } from "#front/utils/socket.types";
 import EloMatchmaking, { UserEloType } from "#front/utils/EloMatchmaking";
 import { sortedIndex } from "#front/utils/searchInsert";
 import { GameModeType, UserGuardPageContext } from "#front/utils/types";

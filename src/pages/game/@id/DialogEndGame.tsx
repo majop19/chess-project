@@ -1,4 +1,4 @@
-import { SocketClientType } from "#back/socket.io/socket.types";
+import { SocketClientType } from "#front/utils/socket.types";
 import {
   Dialog,
   DialogContent,
