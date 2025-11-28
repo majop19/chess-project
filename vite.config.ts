@@ -1,9 +1,8 @@
-// @ts-nocheck
-import { defineConfig, UserConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
-import vike from "vike/plugin";
-import tailwindcss from "@tailwindcss/vite";
+import { defineConfig, UserConfig } from "vite" with {type: "pointer"}
+import react from "@vitejs/plugin-react" with {type: "pointer"}
+import path from "path" with {type: "pointer"}
+import vike from "vike/plugin" with {type: "pointer"}
+import tailwindcss from "@tailwindcss/vite" with {type: "pointer"}
 // https://vite.dev/config/
 
 export default defineConfig({
