@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, UserConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import vike from "vike/plugin";
@@ -24,8 +24,10 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true },
   },
   define: {
-    vike: {
-      _default: {},
+    vite: {
+      vike: {
+        _default: {},
+      },
     },
   },
-});
+}) satisfies UserConfig;

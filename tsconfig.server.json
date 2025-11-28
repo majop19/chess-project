@@ -12,7 +12,7 @@
     "module": "CommonJS",
     "moduleResolution": "node10",
     "esModuleInterop": true,
-    //"skipLibCheck": true,
+    "skipLibCheck": true,
     "strict": true
   },
   "include": ["src/server"],
