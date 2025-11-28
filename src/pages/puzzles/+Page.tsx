@@ -6,19 +6,19 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "#frontx/components/ui/card";
+} from "#front/components/ui/card";
 import { useEffect, useMemo, useState } from "react";
 import { GameStatus } from "./gameStatus";
 import {
   PuzzlesProvider,
   usePuzzlesContext,
-} from "../../frontend/context/PuzzleContext";
+} from "#front/context/PuzzleContext";
 import { Glicko2, Player } from "glicko2";
 import { PuzzleType } from "#front/utils/types";
 import axios from "axios";
-import CountUp from "#frontx/components/CountUp";
-import GradientText from "#frontx/components/GradientText";
-import { cn } from "../../frontend/lib/utils";
+import CountUp from "#front/components/CountUp";
+import GradientText from "#front/components/GradientText";
+import { cn } from "#front/lib/utils";
 import { SignalHigh } from "lucide-react";
 
 export const Page = () => {

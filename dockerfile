@@ -4,10 +4,9 @@ FROM node:20 AS builder
 # Définit le répertoire de travail
 WORKDIR /app
 
-# Copie package.json et lockfile (vite/tsconfig/... peuvent être mis après si tu veux cache)
 COPY package*.json ./
-# Si tu utilises pnpm, copy pnpm-lock.yaml etc.
-# COPY pnpm-lock.yaml ./
+
+COPY pnpm-lock.yaml ./
 
 # Installe les dépendances (dev incl.)
 RUN npm ci
@@ -27,24 +26,18 @@ RUN addgroup --system app && adduser --system --ingroup app app
 
 WORKDIR /app
 
-# Copie seulement ce dont on a besoin pour exécuter l'app
 COPY package*.json ./
-# COPY pnpm-lock.yaml ./
+COPY pnpm-lock.yaml ./
 
-# Installe uniquement les dépendances de production
 RUN npm ci --omit=dev
 
-# Copie les fichiers buildés depuis le builder
 COPY --from=builder /app/dist ./dist
-# Si tu sers des assets statiques ou fichiers publics:
-COPY --from=builder /app/public ./public
-# Si tu as des fichiers .env.example ou scripts nécessaires:
-# COPY --from=builder /app/prisma ./prisma
 
-# Expose le port que ton app utilise (Railway utilisera la variable PORT)
+COPY --from=builder /app/public ./public
+
 EXPOSE 3000
 
-# Change owner du contenu
+# Change ownership of the app directory
 RUN chown -R app:app /app
 
 # Switch to non-root user

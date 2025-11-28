@@ -1,9 +1,9 @@
-import { BoardOrientationProvider } from "#frontx/context/board-orientation";
-import { TimersProvider } from "#frontx/context/timers";
+import { BoardOrientationProvider } from "#front/context/board-orientation";
+import { TimersProvider } from "#front/context/timers";
 import { ReactNode } from "react";
 import { useData } from "vike-react/useData";
 import { GameData } from "./+data";
-import { ChessGameProvider } from "#frontx/context/ChessGameContext";
+import { ChessGameProvider } from "#front/context/ChessGameContext";
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const data = useData<GameData>();

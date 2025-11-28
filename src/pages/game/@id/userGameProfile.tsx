@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "#frontx/components/ui/avatar";
+} from "#front/components/ui/avatar";
 import { useTimersContext } from "#front/hooks/use-context";
 import { IMove, UserGameProfileType } from "#front/utils/types";
 import { AlarmClock } from "lucide-react";
@@ -12,8 +12,8 @@ import { GameData } from "./+data";
 import { SocketClientType } from "#back/socket.io/socket.types";
 import { render } from "vike/abort";
 import { ObjectId } from "mongoose";
-import { useChessGameContext } from "#frontx/context/ChessGameContext";
-import { cn } from "../../../frontend/lib/utils";
+import { useChessGameContext } from "#front/context/ChessGameContext";
+import { cn } from "#front/lib/utils";
 
 function renderPiece(piece: string) {
   const pieces = {

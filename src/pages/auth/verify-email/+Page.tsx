@@ -1,4 +1,4 @@
-import { Button } from "#frontx/components/ui/button";
+import { Button } from "#front/components/ui/button";
 import {
   Card,
   CardContent,
@@ -6,12 +6,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "#frontx/components/ui/card";
+} from "#front/components/ui/card";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "#frontx/components/ui/input-otp";
+} from "#front/components/ui/input-otp";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { REGEXP_ONLY_DIGITS } from "input-otp";

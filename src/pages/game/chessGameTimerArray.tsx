@@ -2,8 +2,8 @@ import {
   BlitzIcon,
   BulletIcon,
   RapidIcon,
-} from "#frontx/components/icon/GameMode.icon";
-import { Button } from "#frontx/components/ui/button";
+} from "#front/components/icon/GameMode.icon";
+import { Button } from "#front/components/ui/button";
 import { ChessGameTimerType, GameModeType } from "#front/utils/types";
 
 export const RapidTimerArray = [

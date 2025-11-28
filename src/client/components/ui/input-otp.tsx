@@ -3,7 +3,7 @@ import { OTPInput, OTPInputContext } from "input-otp";
 import { MinusIcon } from "lucide-react";
 
 import { cn } from "#front/lib/utils";
-import { useTheme } from "#frontx/provider/theme.provider";
+import { useTheme } from "#front/provider/theme.provider";
 
 function InputOTP({
   className,

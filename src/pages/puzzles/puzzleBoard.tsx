@@ -2,7 +2,7 @@ import axios from "axios";
 import { Chess, Square } from "chess.js";
 import { useEffect } from "react";
 import { usePageContext } from "vike-react/usePageContext";
-import { usePuzzlesContext } from "../../frontend/context/PuzzleContext";
+import { usePuzzlesContext } from "#front/context/PuzzleContext";
 import { Chessboard } from "react-chessboard";
 import { PuzzleType } from "#front/utils/types";
 

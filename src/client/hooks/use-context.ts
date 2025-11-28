@@ -1,5 +1,5 @@
-import { ChessGameContextType } from "#frontx/context/board-orientation";
-import { TimersContextType } from "#frontx/context/timers";
+import { ChessGameContextType } from "#front/context/board-orientation";
+import { TimersContextType } from "#front/context/timers";
 import { createContext, use } from "react";
 
 export const BoardOrientationContext =

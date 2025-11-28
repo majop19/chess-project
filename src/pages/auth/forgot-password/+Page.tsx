@@ -1,11 +1,11 @@
-import { Button } from "#frontx/components/ui/button";
+import { Button } from "#front/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "#frontx/components/ui/card";
+} from "#front/components/ui/card";
 import {
   Form,
   FormControl,
@@ -13,8 +13,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "#frontx/components/ui/form";
-import { Input } from "#frontx/components/ui/input";
+} from "#front/components/ui/form";
+import { Input } from "#front/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";

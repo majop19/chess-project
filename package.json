@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vike dev",
-    "nodemon": "nodemon --exec tsx api/index.ts",
-    "build": "tsc -b && NODE_ENV=production vike build"
+    "nodemon": "nodemon --exec tsx src/server/server.ts",
+    "build": "tsc -b && vike build",
+    "start": "node dist/server.js"
   },
   "imports": {
     "#front/*": "./src/frontend/*.ts",

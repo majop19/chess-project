@@ -8,7 +8,6 @@
     "baseUrl": ".",
     "paths": {
       "#front/*": ["./src/client/*"],
-      "#frontx/*": ["./src/client/*"],
       "#back/*": ["./src/server/*"]
     },
     "strictNullChecks": true,

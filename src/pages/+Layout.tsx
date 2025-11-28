@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import "./styles.css";
 import { clientOnly } from "vike-react/clientOnly";
-import { Toaster } from "#frontx/components/ui/sonner";
-import { TailwindIndicator } from "#frontx/components/tailwindIndicator";
-import { MenuLayout } from "#frontx/layout/MenuLayout";
+import { Toaster } from "#front/components/ui/sonner";
+import { TailwindIndicator } from "#front/components/tailwindIndicator";
+import { MenuLayout } from "#front/layout/MenuLayout";
 
-const Providers = clientOnly(() => import("#frontx/provider/Providers"));
+const Providers = clientOnly(() => import("#front/provider/Providers"));
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (

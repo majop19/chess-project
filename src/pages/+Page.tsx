@@ -1,5 +1,5 @@
-import PrismaticBurst from "#frontx/components/PrismaticBurst";
-import { Button } from "#frontx/components/ui/button";
+import PrismaticBurst from "#front/components/PrismaticBurst";
+import { Button } from "#front/components/ui/button";
 import { toast } from "sonner";
 import { usePageContext } from "vike-react/usePageContext";
 import { navigate } from "vike/client/router";

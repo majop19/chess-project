@@ -7,21 +7,21 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "#frontx/components/ui/form";
-import { Input } from "#frontx/components/ui/input";
-import { Button } from "#frontx/components/ui/button";
+} from "#front/components/ui/form";
+import { Input } from "#front/components/ui/input";
+import { Button } from "#front/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "#frontx/components/ui/card";
+} from "#front/components/ui/card";
 import { useState } from "react";
-import { cn } from "../../../frontend/lib/utils";
+import { cn } from "#front/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import PasswordStrengthMeter from "#frontx/components/auth/passwordStrenthMeter";
+import PasswordStrengthMeter from "#front/components/auth/passwordStrenthMeter";
 import { navigate } from "vike/client/router";
 import { toast } from "sonner";
 

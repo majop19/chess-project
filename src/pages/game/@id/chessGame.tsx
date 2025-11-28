@@ -8,12 +8,12 @@ import {
   Tooltip,
   TooltipProvider,
   TooltipTrigger,
-} from "#frontx/components/ui/tooltip";
+} from "#front/components/ui/tooltip";
 import { Repeat2 } from "lucide-react";
 import { TooltipContent } from "@radix-ui/react-tooltip";
 import { useData } from "vike-react/useData";
 import { GameData } from "./+data";
-import { useChessGameContext } from "#frontx/context/ChessGameContext";
+import { useChessGameContext } from "#front/context/ChessGameContext";
 import { IMove } from "#front/utils/types";
 
 export const ChessGame = ({

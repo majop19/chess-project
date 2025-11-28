@@ -1,4 +1,4 @@
-import { SidebarProvider } from "#frontx/components/ui/sidebar";
+import { SidebarProvider } from "#front/components/ui/sidebar";
 import { ThemeProvider } from "./theme.provider";
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

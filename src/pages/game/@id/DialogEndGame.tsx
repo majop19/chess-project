@@ -5,13 +5,13 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTrigger,
-} from "#frontx/components/ui/dialog";
+} from "#front/components/ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { GameData } from "./+data";
 import { useData } from "vike-react/useData";
 import { GameisFinishedButton } from "./gameLayout";
-import { Button } from "#frontx/components/ui/button";
+import { Button } from "#front/components/ui/button";
 import { Menu } from "lucide-react";
 import { navigate } from "vike/client/router";
 export const DialogEndGame = ({

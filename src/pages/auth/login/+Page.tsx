@@ -7,17 +7,17 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "#frontx/components/ui/form";
-import { Input } from "#frontx/components/ui/input";
-import { Button } from "#frontx/components/ui/button";
+} from "#front/components/ui/form";
+import { Input } from "#front/components/ui/input";
+import { Button } from "#front/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "#frontx/components/ui/card";
-import { cn } from "../../../frontend/lib/utils";
+} from "#front/components/ui/card";
+import { cn } from "#front/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { navigate } from "vike/client/router";

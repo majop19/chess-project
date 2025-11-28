@@ -8,9 +8,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "#frontx/components/ui/form";
-import { Input } from "#frontx/components/ui/input";
-import { Button } from "#frontx/components/ui/button";
+} from "#front/components/ui/form";
+import { Input } from "#front/components/ui/input";
+import { Button } from "#front/components/ui/button";
 
 import { useRef } from "react";
 import {
@@ -18,7 +18,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "#frontx/components/ui/card";
+} from "#front/components/ui/card";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import FormData from "form-data";

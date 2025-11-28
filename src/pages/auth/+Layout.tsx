@@ -1,4 +1,4 @@
-import { BoardLayout } from "#frontx/layout/BoardLayout";
+import { BoardLayout } from "#front/layout/BoardLayout";
 import { ReactNode } from "react";
 
 export const Layout = ({ children }: { children: ReactNode }) => {

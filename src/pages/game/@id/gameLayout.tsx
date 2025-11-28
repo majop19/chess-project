@@ -7,10 +7,10 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-} from "#frontx/components/ui/card";
-import { ScrollArea } from "#frontx/components/ui/scroll-area";
+} from "#front/components/ui/card";
+import { ScrollArea } from "#front/components/ui/scroll-area";
 import { cn } from "#front/lib/utils";
-import { Button } from "#frontx/components/ui/button";
+import { Button } from "#front/components/ui/button";
 import {
   ChevronFirst,
   ChevronLast,
@@ -19,7 +19,7 @@ import {
   Plus,
   RotateCcw,
 } from "lucide-react";
-import { useChessGameContext } from "#frontx/context/ChessGameContext";
+import { useChessGameContext } from "#front/context/ChessGameContext";
 import { Chess } from "chess.js";
 import { usePageContext } from "vike-react/usePageContext";
 
@@ -29,7 +29,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "#frontx/components/ui/popover";
+} from "#front/components/ui/popover";
 import { useUserWaitingRoom } from "#front/hooks/use-userWaitingRoom";
 import { IMove, UserGuardPageContext } from "#front/utils/types";
 

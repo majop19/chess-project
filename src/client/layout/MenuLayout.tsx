@@ -2,13 +2,13 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "#frontx/components/ui/avatar";
-import { Button } from "#frontx/components/ui/button";
+} from "#front/components/ui/avatar";
+import { Button } from "#front/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-} from "#frontx/components/ui/navigation-menu";
+} from "#front/components/ui/navigation-menu";
 
 import { useIsMobile } from "#front/hooks/use-mobile";
 import {

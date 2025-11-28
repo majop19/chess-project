@@ -1,6 +1,6 @@
-import { Button } from "#frontx/components/ui/button";
+import { Button } from "#front/components/ui/button";
 import { ChevronRight } from "lucide-react";
-import { usePuzzlesContext } from "../../frontend/context/PuzzleContext";
+import { usePuzzlesContext } from "#front/context/PuzzleContext";
 import { Chess } from "chess.js";
 import { PuzzleType } from "#front/utils/types";
 

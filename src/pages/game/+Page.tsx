@@ -1,6 +1,6 @@
 import { useSocket } from "#front/hooks/use-socket";
 import { usePageContext } from "vike-react/usePageContext";
-import { Button } from "#frontx/components/ui/button";
+import { Button } from "#front/components/ui/button";
 import { ChessGameTimerType, UserGuardPageContext } from "#front/utils/types";
 import { useUserWaitingRoom } from "#front/hooks/use-userWaitingRoom";
 import { Chessboard } from "react-chessboard";
@@ -11,18 +11,18 @@ import {
   TimersVariant,
 } from "./chessGameTimerArray";
 import { useState } from "react";
-import { Card, CardContent, CardHeader } from "#frontx/components/ui/card";
+import { Card, CardContent, CardHeader } from "#front/components/ui/card";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import {
   BlitzIcon,
   BulletIcon,
   RapidIcon,
-} from "#frontx/components/icon/GameMode.icon";
+} from "#front/components/icon/GameMode.icon";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "#frontx/components/ui/avatar";
+} from "#front/components/ui/avatar";
 
 export const Page = () => {
   const pageContext = usePageContext();
