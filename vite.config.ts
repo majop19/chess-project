@@ -24,6 +24,7 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true },
   },
   define: {
+    _default: true,
     vite: {
       vike: {
         _default: {},
