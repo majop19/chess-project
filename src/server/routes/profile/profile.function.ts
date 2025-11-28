@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { type IUser } from "#front/utils/types";
 import { type NextFunction, type Request, type Response } from "express";
 import { fileTypeFromBuffer } from "file-type";

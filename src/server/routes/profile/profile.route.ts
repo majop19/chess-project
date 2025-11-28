@@ -1,4 +1,3 @@
-//@ts-nocheck
 import express, {
   type NextFunction,
   type Request,
@@ -9,7 +8,7 @@ import {
   fileValidation,
   uploadFile,
 } from "#back/routes/profile/profile.function";
-const router = express.Router();
+const router: express.Router = express.Router();
 const upload = multer({ dest: "/tmp" });
 
 router.post(

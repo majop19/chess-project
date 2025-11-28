@@ -1,10 +1,9 @@
-// @ts-nocheck
 import { Problem } from "#back/models/problems.model";
 import { User } from "#back/models/user.model";
 import type { IProblem, IUser } from "#front/utils/types";
 import express, { type Request, type Response } from "express";
 
-const router = express.Router();
+const router: express.Router = express.Router();
 
 router.get("/:elo", async (req: Request, res: Response) => {
   const userElo = Number(req.params.elo);

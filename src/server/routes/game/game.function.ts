@@ -2,7 +2,7 @@ import { ChessProfile } from "#back/models/chessProfile/chessProfile.model";
 import { Game } from "#back/models/game.model";
 import { Move } from "#back/models/move.model";
 import { User } from "#back/models/user.model";
-import { predictEloChanges } from "#front/utils/calculateChessGameElo";
+import { predictEloChanges } from "#back/utils/calculateChessGameElo";
 import type {
   ChessGameTimerType,
   ColorType,

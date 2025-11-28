@@ -1,4 +1,3 @@
-// @ts-nocheck
 import bcrypt from "bcryptjs";
 import { type NextFunction, type Request, type Response } from "express";
 import passport from "passport";
@@ -6,6 +5,7 @@ import { Error } from "mongoose";
 import { ChessProfile } from "#back/models/chessProfile/chessProfile.model";
 
 import { type IChessProfile, type IUser } from "#front/utils/types";
+import { User } from "#back/models/user.model";
 
 export const signup = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
@@ -203,7 +203,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
   const { email } = req.body;
 
   try {
-    const user: Iuser | null = await User.findOne({ email });
+    const user: IUser | null = await User.findOne({ email });
 
     if (!user) throw new Error("User not found");
 
@@ -245,7 +245,7 @@ export const resetPassword = async (req: Request, res: Response) => {
   }
 
   try {
-    const user: Iuser | null = await User.findOne({
+    const user: IUser | null = await User.findOne({
       resetPasswordToken: token,
       resetPasswordExpiresAt: { $gt: Date.now() },
     });

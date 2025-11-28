@@ -1,4 +1,4 @@
-import { type UserEloType } from "#back/utils/EloMatchmaking";
+import { type UserEloType } from "#front/utils/EloMatchmaking";
 import {
   type ChessGameTimerType,
   type IMove,

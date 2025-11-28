@@ -10,7 +10,7 @@ import {
 } from "#back/routes/auth/auth.function";
 import passport from "passport";
 
-const router = express.Router();
+const router: express.Router = express.Router();
 
 router.post("/register", signup);
 
