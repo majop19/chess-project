@@ -1,5 +1,5 @@
 import { Config } from "vike/types";
 
 export default {
-  reactStrictMode: false,
+  reactStrictMode: process.env.NODE_ENV !== "production",
 } satisfies Config;
