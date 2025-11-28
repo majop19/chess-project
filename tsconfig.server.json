@@ -19,5 +19,6 @@
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["src/server"]
+  "include": ["src/server"],
+  "exclude": ["src/pages", "src/client"]
 }
