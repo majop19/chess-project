@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "#front/*": ["./src/client/*"],
-      "#back/*": ["./src/server/*"]
+      "#front/*": ["src/client/*"],
+      "#back/*": ["src/server/*"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
