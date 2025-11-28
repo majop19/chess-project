@@ -11,7 +11,8 @@
       "#back/*": ["./src/server/*"]
     },
     "strictNullChecks": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "jsx": "react-jsx"
   },
 
   "module": "esnext",
