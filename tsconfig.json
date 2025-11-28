@@ -7,14 +7,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "#front/*": ["./src/frontend/*"],
-      "#frontx/*": ["./src/frontend/*"],
-      "#back/*": ["./src/backend/*"]
+      "#front/*": ["./src/client/*"],
+      "#frontx/*": ["./src/client/*"],
+      "#back/*": ["./src/server/*"]
     },
     "strictNullChecks": true,
     "target": "ESNext"
   },
 
   "module": "esnext",
-  "moduleResolution": "node16"
+  "moduleResolution": "node16",
+  "include": ["src"]
 }
