@@ -24,6 +24,6 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true },
   },
   define: {
-    _default: {},
+    default: {},
   },
 });

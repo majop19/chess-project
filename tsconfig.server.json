@@ -16,5 +16,5 @@
     "strict": true
   },
   "include": ["src/server"],
-  "exclude": ["src/pages", "src/client", "**/*.d.ts"]
+  "exclude": ["src/pages", "src/client"]
 }
