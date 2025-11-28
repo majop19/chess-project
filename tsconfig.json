@@ -2,20 +2,13 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./tsconfig.server.json" }
   ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
-    },
-    "strictNullChecks": true,
-    "target": "ESNext",
-    "jsx": "react-jsx"
-  },
-
-  "module": "esnext",
-  "moduleResolution": "node16",
-  "include": ["src"]
+    }
+  }
 }
