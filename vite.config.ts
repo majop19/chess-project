@@ -23,4 +23,7 @@ export default defineConfig({
     outDir: "dist/client",
     commonjsOptions: { transformMixedEsModules: true },
   },
+  define: {
+    _default: {},
+  },
 });
