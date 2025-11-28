@@ -21,14 +21,5 @@ export default defineConfig({
   },
   build: {
     outDir: "dist/client",
-    commonjsOptions: { transformMixedEsModules: true },
-  },
-  define: {
-    _default: true,
-    vite: {
-      vike: {
-        _default: {},
-      },
-    },
   },
 });
