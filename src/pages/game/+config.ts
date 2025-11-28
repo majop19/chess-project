@@ -1,4 +1,4 @@
-import { env } from "process";
+import { env } from "node:process";
 import { Config } from "vike/types";
 
 export default {
