@@ -18,6 +18,9 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "src/server"),
       },
     ],
+    define: {
+      _default: "_default",
+    },
   },
   build: {
     outDir: "dist/client",
