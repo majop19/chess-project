@@ -6,7 +6,6 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 
 export default defineConfig({
-  _default: false,
   plugins: [react(), vike(), tailwindcss()],
   resolve: {
     alias: [
@@ -19,11 +18,14 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "src/server"),
       },
     ],
-    define: {
-      _default: "_default",
-    },
   },
   build: {
     outDir: "dist/client",
+  },
+  define: {
+    "process.env": {},
+    _default: {},
+    default: {},
+    global: {},
   },
 });
