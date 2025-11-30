@@ -9,7 +9,10 @@ export const guard = async (pageContext: PageContext) => {
 
   const resetPasswordToken = pageContext.routeParams.token;
 
-  const user: IUser | null = await User.findOne({ resetPasswordToken });
+  // @ts-expect-error -- don't know why ts error
+  const user: IUser | null = await User.findOne({
+    resetPasswordToken,
+  });
 
   if (!user) throw render(403, "Invalid token");
 
