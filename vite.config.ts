@@ -6,8 +6,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { root } from "#back/utils/root";
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/",
-
   root: root,
   plugins: [react(), vike(), tailwindcss()],
   resolve: {
@@ -22,5 +20,4 @@ export default defineConfig({
       },
     ],
   },
-  build: { rollupOptions: { input: "index.html" } },
 });

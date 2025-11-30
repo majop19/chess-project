@@ -10,8 +10,8 @@
     "start": "node dist/server.js"
   },
   "imports": {
-    "#front/*": "./src/client/*.ts",
-    "#back/*": "./src/server/*.ts"
+    "#front/*": "./src/client/*",
+    "#back/*": "./src/server/*"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
