@@ -19,8 +19,7 @@ import { ServerType } from "#back/socket.io/socket.types";
 import { ChessGameEventHandler } from "#back/socket.io/events/ChessGameEvent";
 import mongoose, { ObjectId } from "mongoose";
 import { createDevMiddleware } from "vike/server";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { root } from "#back/utils/root";
 
 async function startServer() {
   dotenv.config();
@@ -33,7 +32,7 @@ async function startServer() {
 
   app.use(express.json());
   app.use(express.static("public"));
-  app.use(cors({ origin: true, credentials: true }));
+  app.use(cors({ origin: process.env.URL, credentials: true }));
 
   app.use(sessionMiddleware);
   app.use(passport.initialize());
@@ -48,14 +47,14 @@ async function startServer() {
   });
   passport.deserializeUser(deserializeUser);
   // Vite integration
-  const __dirname = dirname(fileURLToPath(import.meta.url));
-  const root = `${__dirname}/..`;
+  //const __dirname = dirname(fileURLToPath(import.meta.url));
+  //const root = `${__dirname}/..`;
   if (isProduction) {
     // In production, we need to serve our static assets ourselves.
     // (In dev, Vite's middleware serves our static assets.)
     app.use(express.static(`${root}/dist/client`));
   } else {
-    const { devMiddleware } = await createDevMiddleware();
+    const { devMiddleware } = await createDevMiddleware({ root });
     app.use(devMiddleware);
   }
   // middleware for sharing the user context
@@ -94,10 +93,10 @@ async function startServer() {
 
   app.use("/problems", ProblemsRouter);
 
-  app.get("/health", (_, res) => {
-    // for health check
-    res.status(200).send("ok");
-  });
+  // app.get("/health", (_, res) => {
+  // for health check
+  //  res.status(200).send("ok");
+  //});
   // Vike middleware.
   app.get("/{*vikeCatchAll}", vikeRenderPage);
 
@@ -105,6 +104,7 @@ async function startServer() {
   connectDB();
   nodeServer.listen(port);
   console.log(`Server running at http://localhost:${port}`);
+  return app;
 }
 
 startServer();

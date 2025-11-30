@@ -8,4 +8,5 @@ const config = {
   stream: "node",
   passToClient: ["user", "loginAccessError"],
   title: "chessApp Project",
+  disableUrlNormalization: true,
 } satisfies Config;

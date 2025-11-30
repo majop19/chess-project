@@ -9,6 +9,8 @@
     "paths": {
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
-    }
+    },
+    "strictNullChecks": true,
+    "target": "ESNext"
   }
 }

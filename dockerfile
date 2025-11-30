@@ -15,7 +15,8 @@ RUN npm ci
 COPY . .
 
 # Build : typescript server + vite client
-# Assure-toi d'avoir un script "build" qui compile server (tsc) et build le client (vite build)
+
+# compile server (tsc) build le client (vite build)
 RUN npm run build
 
 # ---------- STAGE 2: production ----------

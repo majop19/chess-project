@@ -3,9 +3,11 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import vike from "vike/plugin";
 import tailwindcss from "@tailwindcss/vite";
+import { root } from "#back/utils/root";
 // https://vite.dev/config/
-import { root } from "./src/client/utils/root";
 export default defineConfig({
+  base: "/",
+
   root: root,
   plugins: [react(), vike(), tailwindcss()],
   resolve: {
@@ -20,7 +22,5 @@ export default defineConfig({
       },
     ],
   },
-  build: {
-    outDir: "dist/client",
-  },
+  build: { rollupOptions: { input: "index.html" } },
 });
