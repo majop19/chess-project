@@ -10,5 +10,7 @@
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
     }
-  }
+  },
+  "module": "esnext",
+  "moduleResolution": "node16"
 }

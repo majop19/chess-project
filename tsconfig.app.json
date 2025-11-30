@@ -6,13 +6,13 @@
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
     },
-    "target": "ES6",
-    "lib": ["DOM", "DOM.Iterable", "ES6"],
-    "module": "ESNext",
+    "target": "es2024",
+    "lib": ["DOM", "DOM.Iterable", "ES2024"],
+    "module": "esnext",
     "jsx": "react-jsx",
     "moduleResolution": "bundler",
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/client", "src/pages"]
+  "include": ["src/client", "src/pages", "vite.config.ts"]
 }

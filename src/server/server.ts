@@ -19,12 +19,13 @@ import { ServerType } from "#back/socket.io/socket.types";
 import { ChessGameEventHandler } from "#back/socket.io/events/ChessGameEvent";
 import mongoose, { ObjectId } from "mongoose";
 import { createDevMiddleware } from "vike/server";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 async function startServer() {
   dotenv.config();
 
   const isProduction = process.env.NODE_ENV === "production";
-  const root = `${__dirname}/..`;
   const app = express();
   const nodeServer = createServer(app);
   const io = new Server<ServerType>(nodeServer);
@@ -47,14 +48,14 @@ async function startServer() {
   });
   passport.deserializeUser(deserializeUser);
   // Vite integration
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+  const root = `${__dirname}/..`;
   if (isProduction) {
     // In production, we need to serve our static assets ourselves.
     // (In dev, Vite's middleware serves our static assets.)
     app.use(express.static(`${root}/dist/client`));
   } else {
-    const { devMiddleware } = await createDevMiddleware({
-      root,
-    });
+    const { devMiddleware } = await createDevMiddleware();
     app.use(devMiddleware);
   }
   // middleware for sharing the user context
@@ -106,4 +107,5 @@ async function startServer() {
   console.log(`Server running at http://localhost:${port}`);
 }
 
+startServer();
 export default startServer;

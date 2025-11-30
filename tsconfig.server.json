@@ -2,19 +2,17 @@
   "compilerOptions": {
     "composite": true,
     "outDir": "dist/server",
-    "rootDir": "src",
     "baseUrl": ".",
     "paths": {
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
     },
-    "target": "ES6",
-    "module": "CommonJS",
-    "moduleResolution": "node10",
+    "target": "es2024",
+    "module": "node16",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["src/server"],
-  "exclude": ["src/pages", "src/client"]
+  "include": ["src/server", "vite.config.ts"]
 }

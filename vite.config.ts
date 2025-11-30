@@ -4,8 +4,9 @@ import path from "path";
 import vike from "vike/plugin";
 import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
-
+import { root } from "./src/client/utils/root";
 export default defineConfig({
+  root: root,
   plugins: [react(), vike(), tailwindcss()],
   resolve: {
     alias: [
@@ -21,16 +22,5 @@ export default defineConfig({
   },
   build: {
     outDir: "dist/client",
-  },
-  define: {
-    vike: {
-      _default: {},
-      default: {},
-      global: {},
-    },
-    "process.env": {},
-    _default: {},
-    default: {},
-    global: {},
   },
 });
