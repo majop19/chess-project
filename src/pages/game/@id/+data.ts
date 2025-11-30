@@ -7,7 +7,6 @@ export type GameData = Awaited<ReturnType<typeof data>>;
 
 export const data = async (pageContext: PageContextServer) => {
   const gameId = pageContext.routeParams.id;
-  // @ts-expect-error -- don't know why ts error
   const game: IGame | null = await Game.findOne({
     _id: gameId,
     // @ts-expect-error -- fix type
