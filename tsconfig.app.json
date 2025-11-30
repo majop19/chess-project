@@ -1,18 +1,22 @@
 {
   "compilerOptions": {
-    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "baseUrl": ".",
     "paths": {
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
     },
-    "target": "es2024",
-    "lib": ["DOM", "DOM.Iterable", "ES2024"],
-    "module": "esnext",
-    "jsx": "react-jsx",
+    "useDefineForClassFields": true,
     "moduleResolution": "bundler",
-    "strict": true,
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "target": "ES2020",
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "module": "Esnext",
+    "jsx": "react-jsx",
     "skipLibCheck": true
   },
-  "include": ["src/client", "src/pages", "vite.config.ts"]
+  "include": ["src/client", "src/pages"]
 }

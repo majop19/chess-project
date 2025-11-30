@@ -1,19 +1,27 @@
 {
   "compilerOptions": {
-    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "outDir": "dist/server",
-    "rootDir": "src",
     "baseUrl": ".",
     "paths": {
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
     },
-    "target": "es2024",
-    "module": "node16",
-    "moduleResolution": "node16",
+    /* Bundler mode */
+    "target": "ES2024",
+    "lib": ["ES2024"],
+    "module": "Esnext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": true
+    "isolatedModules": true,
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
   },
-  "include": ["src/server"]
+  "include": ["src/server", "vite.config.ts"]
 }
