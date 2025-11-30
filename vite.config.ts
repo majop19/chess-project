@@ -23,6 +23,11 @@ export default defineConfig({
     outDir: "dist/client",
   },
   define: {
+    vike: {
+      _default: {},
+      default: {},
+      global: {},
+    },
     "process.env": {},
     _default: {},
     default: {},
