@@ -8,7 +8,7 @@
       "#front/*": ["src/client/*"],
       "#back/*": ["src/server/*"]
     },
-    "target": "ES2020",
+    "target": "ES6",
     "module": "CommonJS",
     "moduleResolution": "node10",
     "esModuleInterop": true,
