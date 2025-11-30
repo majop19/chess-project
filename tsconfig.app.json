@@ -18,5 +18,5 @@
     "jsx": "react-jsx",
     "skipLibCheck": true
   },
-  "include": ["src/client", "src/pages"]
+  "include": ["src"]
 }

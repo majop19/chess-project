@@ -8,8 +8,8 @@
       "#back/*": ["src/server/*"]
     },
     /* Bundler mode */
-    "target": "ES2024",
-    "lib": ["ES2024"],
+    "target": "ES2022",
+    "lib": ["ES2023"],
     "module": "Esnext",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/server", "vite.config.ts", "src/pages"]
+  "include": ["src/server", "vite.config.ts"]
 }
