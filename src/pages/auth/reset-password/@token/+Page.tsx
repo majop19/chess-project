@@ -64,7 +64,9 @@ export const Page = () => {
     mutationFn: async (value: ForgotPasswordSchemaType) => {
       return axios
         .post(
-          `http://localhost:3000/auth/reset-password/${pageContext.routeParams.token}`,
+          `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
+            process.env.URL
+          }/auth/reset-password/${pageContext.routeParams.token}`,
           value
         )
         .then(async (response) => {

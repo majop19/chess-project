@@ -59,7 +59,12 @@ export const Page = () => {
   const mutation = useMutation({
     mutationFn: async (values: FormSchemaType) => {
       return axios
-        .post(`http://localhost:3000/auth/register`, values)
+        .post(
+          `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
+            process.env.URL
+          }/auth/register`,
+          values
+        )
         .then(async (response) => {
           if (response.status === 201) {
             await navigate("/auth/verify-email");

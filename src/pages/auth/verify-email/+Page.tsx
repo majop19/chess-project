@@ -29,7 +29,12 @@ export const Page = () => {
   const mutation = useMutation({
     mutationFn: async (code: string) => {
       return axios
-        .post("http://localhost:3000/auth/verify-email", { code: code })
+        .post(
+          `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
+            process.env.URL
+          }/auth/verify-email`,
+          { code: code }
+        )
         .then(() => navigate("/"))
         .catch((error) => {
           if (!error.response.data.invalid) setIsTokenExpired(true);
@@ -40,9 +45,14 @@ export const Page = () => {
 
   const ResendEmail = async () => {
     await axios
-      .post("http://localhost:3000/auth/resend-email", {
-        email: user?.email,
-      })
+      .post(
+        `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
+          process.env.URL
+        }/auth/resend-email`,
+        {
+          email: user?.email,
+        }
+      )
       .catch(() => toast.error("An Error occured"));
     await reload();
   };
