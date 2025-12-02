@@ -7,7 +7,7 @@ import { root } from "#back/root";
 
 // https://vite.dev/config/
 export default defineConfig({
-  root: root,
+  root: process.env.NODE_ENV === "production" ? undefined : root,
   plugins: [react(), vike(), tailwindcss()],
   resolve: {
     alias: [
