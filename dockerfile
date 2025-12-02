@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-COPY pnpm-lock.yaml ./
+COPY bun.lock ./
 
 # Installe les dépendances (dev incl.)
 RUN npm ci
@@ -28,7 +28,7 @@ RUN addgroup --system app && adduser --system --ingroup app app
 WORKDIR /app
 
 COPY package*.json ./
-COPY pnpm-lock.yaml ./
+COPY bun.lock ./
 
 RUN npm ci --omit=dev
 
