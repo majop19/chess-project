@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "outDir": "dist/server-runtime",
+    "outDir": "dist/server",
+    "rootDir": "src/server",
     //"baseUrl": ".",
     "paths": {
       "#front/*": ["./src/frontend/*"],
@@ -23,5 +24,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/server", "vite.config.ts"]
+  "include": ["src/server"]
 }
