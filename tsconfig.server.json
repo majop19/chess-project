@@ -2,6 +2,7 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "outDir": "dist/server",
+    "rootDir": "src/server",
     //"baseUrl": ".",
     "paths": {
       "#front/*": ["./src/frontend/*"],
