@@ -2,15 +2,15 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "outDir": "dist/server",
-    "baseUrl": ".",
+    //"baseUrl": ".",
     "paths": {
-      "#front/*": ["src/client/*"],
-      "#back/*": ["src/server/*"]
+      "#front/*": ["./src/frontend/*"],
+      "#back/*": ["./src/server/*"]
     },
     /* Bundler mode */
     "target": "ES2022",
     "lib": ["ES2023"],
-    "module": "Esnext",
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
     "esModuleInterop": true,

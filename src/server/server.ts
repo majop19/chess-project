@@ -20,6 +20,7 @@ import { ChessGameEventHandler } from "#back/socket.io/events/ChessGameEvent";
 import mongoose, { ObjectId } from "mongoose";
 import { createDevMiddleware } from "vike/server";
 import { root } from "#back/utils/root";
+import tailwindcss from "@tailwindcss/vite";
 
 async function startServer() {
   dotenv.config();
@@ -54,7 +55,10 @@ async function startServer() {
     // (In dev, Vite's middleware serves our static assets.)
     app.use(express.static(`${root}/dist/client`));
   } else {
-    const { devMiddleware } = await createDevMiddleware({ root });
+    const { devMiddleware } = await createDevMiddleware({
+      root,
+      viteConfig: { plugins: [tailwindcss()] },
+    });
     app.use(devMiddleware);
   }
   // middleware for sharing the user context

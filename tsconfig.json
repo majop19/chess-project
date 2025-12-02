@@ -7,8 +7,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "#front/*": ["src/client/*"],
-      "#back/*": ["src/server/*"]
+      "#front/*": ["./src/frontend/*"],
+      "#back/*": ["./src/server/*"]
     },
     "strictNullChecks": true,
     "target": "ESNext"

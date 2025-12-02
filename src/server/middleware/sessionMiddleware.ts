@@ -1,8 +1,7 @@
 import MongoStore from "connect-mongo";
 import session from "express-session";
-import express from "express";
 
-const sessionMiddleware: express.RequestHandler = session({
+const sessionMiddleware = session({
   secret: process.env.SESSION_SECRET!,
   cookie: {
     sameSite: "none",

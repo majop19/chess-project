@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { type NextFunction, type Request, type Response } from "express";
 
 // ensures that the middlewares are only applied to the first HTTP request of the session.

@@ -1,6 +1,5 @@
-// @ts-nocheck
 import { User } from "#back/models/user.model";
-import { type ChessProfileLean, type IUser } from "#front/utils/types";
+import { type ChessProfileLean, type IUser } from "#back/utils/types";
 import { type Request, type Response } from "express";
 import { renderPage } from "vike/server";
 
@@ -22,6 +21,7 @@ const vikeRenderPage = async (req: Request, res: Response) => {
           image: user.image,
           name: user.name,
           isVerified: user.isVerified,
+          // @ts-expect-error type is correct
           chessProfile: user.chessProfile as ChessProfileLean,
         }
       : null,

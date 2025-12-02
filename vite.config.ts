@@ -12,11 +12,11 @@ export default defineConfig({
     alias: [
       {
         find: "#front",
-        replacement: path.resolve(__dirname, "src/client"),
+        replacement: path.resolve(__dirname, "./src/client"),
       },
       {
         find: "#back",
-        replacement: path.resolve(__dirname, "src/server"),
+        replacement: path.resolve(__dirname, "./src/server"),
       },
     ],
   },
