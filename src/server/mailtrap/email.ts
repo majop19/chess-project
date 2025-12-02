@@ -2,8 +2,8 @@ import {
   PASSWORD_RESET_REQUEST_TEMPLATE,
   PASSWORD_RESET_SUCCESS_TEMPLATE,
   VERIFICATION_EMAIL_TEMPLATE,
-} from "./email.tempalte";
-import { mailtrapClient, sender } from "./mailtrap.config";
+} from "./email.tempalte.js";
+import { mailtrapClient, sender } from "./mailtrap.config.js";
 
 export const sendVerificationEmail = async (
   email: string,

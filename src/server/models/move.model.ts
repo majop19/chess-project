@@ -1,4 +1,4 @@
-import { type IMove } from "./../utils/types";
+import { type IMove } from "./../utils/types.js";
 import mongoose, { Schema } from "mongoose";
 
 export const MoveSchema = new Schema<IMove>(

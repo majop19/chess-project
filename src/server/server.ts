@@ -1,25 +1,25 @@
 import express from "express";
 import cors from "cors";
-import AuthRouter from "./routes/auth/auth.route";
-import ProfileRouter from "./routes/profile/profile.route";
-import ProblemsRouter from "./routes/problems/problems.route";
+import AuthRouter from "./routes/auth/auth.route.js";
+import ProfileRouter from "./routes/profile/profile.route.js";
+import ProblemsRouter from "./routes/problems/problems.route.js";
 import passport from "passport";
 import dotenv from "dotenv";
-import { connectDB } from "./db/connectDB";
+import { connectDB } from "./db/connectDB.js";
 import compression from "compression";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
-import { onlyForHandshake } from "./middleware/onlyForHandshake";
-import sessionMiddleware from "./middleware/sessionMiddleware";
-import vikeRenderPage from "./middleware/vikeRenderPage";
-import { googleStrategy, localStrategy } from "./utils/authStrategy";
-import deserializeUser from "./utils/deserializeUser.function";
-import { WaitingRoomGameEventHandler } from "./socket.io/events/WaitingRoomGameEvent";
-import { ServerType } from "./socket.io/socket.types";
-import { ChessGameEventHandler } from "./socket.io/events/ChessGameEvent";
+import { onlyForHandshake } from "./middleware/onlyForHandshake.js";
+import sessionMiddleware from "./middleware/sessionMiddleware.js";
+import vikeRenderPage from "./middleware/vikeRenderPage.js";
+import { googleStrategy, localStrategy } from "./utils/authStrategy.js";
+import deserializeUser from "./utils/deserializeUser.function.js";
+import { WaitingRoomGameEventHandler } from "./socket.io/events/WaitingRoomGameEvent.js";
+import { ServerType } from "./socket.io/socket.types.js";
+import { ChessGameEventHandler } from "./socket.io/events/ChessGameEvent.js";
 import mongoose, { ObjectId } from "mongoose";
 import { createDevMiddleware } from "vike/server";
-import { root } from "./root";
+import { root } from "./root.js";
 import tailwindcss from "@tailwindcss/vite";
 
 async function startServer() {

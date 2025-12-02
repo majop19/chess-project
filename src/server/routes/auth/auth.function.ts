@@ -2,10 +2,10 @@ import bcrypt from "bcryptjs";
 import { type NextFunction, type Request, type Response } from "express";
 import passport from "passport";
 import { Error } from "mongoose";
-import { ChessProfile } from "../../models/chessProfile/chessProfile.model";
+import { ChessProfile } from "../../models/chessProfile/chessProfile.model.js";
 
-import { type IChessProfile, type IUser } from "#back/utils/types";
-import { User } from "#back/models/user.model";
+import { type IChessProfile, type IUser } from "#back/utils/types.js";
+import { User } from "#back/models/user.model.js";
 
 export const signup = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;

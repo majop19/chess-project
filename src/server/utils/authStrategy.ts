@@ -1,9 +1,9 @@
 import LocalStrategy from "passport-local";
 import GoogleStrategy from "passport-google-oauth20";
-import { User } from "#back/models/user.model";
+import { User } from "#back/models/user.model.js";
 import bcrypt from "bcryptjs";
-import { ChessProfile } from "./../models/chessProfile/chessProfile.model";
-import { type IChessProfile, type IUser } from "./../utils/types";
+import { ChessProfile } from "./../models/chessProfile/chessProfile.model.js";
+import { type IChessProfile, type IUser } from "./../utils/types.js";
 
 export const localStrategy = new LocalStrategy.Strategy(
   { usernameField: "email" },

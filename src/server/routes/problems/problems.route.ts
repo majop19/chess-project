@@ -1,6 +1,6 @@
-import { Problem } from "./../../models/problems.model";
-import { User } from "./../../models/user.model";
-import type { IProblem, IUser } from "./../../utils/types";
+import { Problem } from "./../../models/problems.model.js";
+import { User } from "./../../models/user.model.js";
+import type { IProblem, IUser } from "./../../utils/types.js";
 import express, { type Request, type Response } from "express";
 
 const router: express.Router = express.Router();

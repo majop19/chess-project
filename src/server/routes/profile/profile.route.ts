@@ -7,7 +7,7 @@ import multer from "multer";
 import {
   fileValidation,
   uploadFile,
-} from "./../../routes/profile/profile.function";
+} from "./../../routes/profile/profile.function.js";
 const router: express.Router = express.Router();
 const upload = multer({ dest: "/tmp" });
 

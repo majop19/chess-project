@@ -1,4 +1,4 @@
-import { type IUser } from "./../../utils/types";
+import { type IUser } from "./../../utils/types.js";
 import { type NextFunction, type Request, type Response } from "express";
 import { fileTypeFromBuffer } from "file-type";
 import fs from "fs";

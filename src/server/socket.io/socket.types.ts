@@ -1,11 +1,11 @@
-import { type UserEloType } from "./../utils/EloMatchmaking";
+import { type UserEloType } from "./../utils/EloMatchmaking.js";
 import {
   type ChessGameTimerType,
   type IMove,
   type MoveDataGameEventType,
   type TimeControlType,
   type TimeIncrementType,
-} from "#back/utils/types";
+} from "#back/utils/types.js";
 import mongoose, { ObjectId } from "mongoose";
 import { Server, Socket } from "socket.io";
 

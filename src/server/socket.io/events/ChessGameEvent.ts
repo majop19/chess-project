@@ -2,14 +2,14 @@ import {
   createChessGame,
   EndChessGame,
   UpdateChessGame,
-} from "./../../routes/game/game.function";
+} from "./../../routes/game/game.function.js";
 import mongoose, { ObjectId } from "mongoose";
 import {
   type ServerType,
   type SocketServerType,
-} from "./../../socket.io/socket.types";
-import { type ChessGameTimerType } from "./../../utils/types";
-import { gameTimeout } from "./../../socket.io/events/gameTimeout.function";
+} from "./../../socket.io/socket.types.js";
+import { type ChessGameTimerType } from "./../../utils/types.js";
+import { gameTimeout } from "./../../socket.io/events/gameTimeout.function.js";
 
 export const ChessGameEventHandler = (
   io: ServerType,

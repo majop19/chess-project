@@ -1,5 +1,5 @@
-import { User } from "./../models/user.model";
-import { type IUser } from "./../utils/types";
+import { User } from "./../models/user.model.js";
+import { type IUser } from "./../utils/types.js";
 import { ObjectId } from "mongoose";
 
 async function deserializeUser(
