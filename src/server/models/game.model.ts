@@ -1,7 +1,6 @@
-// @ts-nocheck
 import mongoose, { Schema, model } from "mongoose";
 import { MoveSchema } from "#back/models/move.model";
-import { type IGame } from "#front/utils/types";
+import { type IGame } from "#back/utils/types";
 
 export const GameSchema = new Schema<IGame>(
   {

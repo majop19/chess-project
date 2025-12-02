@@ -1,4 +1,4 @@
-import { type IUser } from "#front/utils/types";
+import { type IUser } from "#back/utils/types";
 import mongoose, { Schema, model } from "mongoose";
 
 const userSchema = new Schema<IUser>(

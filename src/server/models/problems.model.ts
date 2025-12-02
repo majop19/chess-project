@@ -1,4 +1,4 @@
-import { type IProblem } from "#front/utils/types";
+import { type IProblem } from "#back/utils/types";
 import mongoose, { Schema } from "mongoose";
 
 const problemSchema = new Schema<IProblem>({
