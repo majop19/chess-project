@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node -r tsconfig-paths/register src/server/server.ts",
     "nodemon": "nodemon --exec tsx src/server/server.ts",
-    "build": "tsc -b && vike build",
+    "build": "tsc -p tsconfig.server.json && vike build",
     "start": "node dist/server/server.js"
   },
   "imports": {
