@@ -5,8 +5,7 @@
     "rootDir": "src/server",
     //"baseUrl": ".",
     "paths": {
-      "#front/*": ["./src/frontend/*"],
-      "#back/*": ["./src/server/*"]
+      "#back/*": ["./dist/server/*"]
     },
     /* Bundler mode */
     "target": "ES2022",
