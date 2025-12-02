@@ -53,7 +53,7 @@ async function startServer() {
   if (isProduction) {
     // In production, we need to serve our static assets ourselves.
     // (In dev, Vite's middleware serves our static assets.)
-    app.use(express.static(`${__dirname}/dist/client`));
+    app.use(express.static(`${root}/dist/client`));
   } else {
     const { devMiddleware } = await createDevMiddleware({
       root,
