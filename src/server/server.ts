@@ -21,6 +21,8 @@ import mongoose, { ObjectId } from "mongoose";
 import { createDevMiddleware } from "vike/server";
 import { root } from "./root.js";
 import tailwindcss from "@tailwindcss/vite";
+import path from "path";
+import { fileURLToPath } from "url";
 
 async function startServer() {
   dotenv.config();
@@ -53,7 +55,9 @@ async function startServer() {
   if (isProduction) {
     // In production, we need to serve our static assets ourselves.
     // (In dev, Vite's middleware serves our static assets.)
-    app.use(express.static(`${root}/dist/client`));
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    app.use(express.static(`${__dirname}/dist/client`));
   } else {
     const { devMiddleware } = await createDevMiddleware({
       root,
