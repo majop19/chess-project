@@ -12,7 +12,7 @@ import type {
   ResultChessGameType,
   IUser,
   IMove,
-} from "#front/utils/types";
+} from "#back/utils/types";
 import mongoose, { ObjectId } from "mongoose";
 
 export const createChessGame = async (

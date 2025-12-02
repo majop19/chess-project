@@ -1,6 +1,6 @@
 import { Problem } from "#back/models/problems.model";
 import { User } from "#back/models/user.model";
-import type { IProblem, IUser } from "#front/utils/types";
+import type { IProblem, IUser } from "#back/utils/types";
 import express, { type Request, type Response } from "express";
 
 const router: express.Router = express.Router();

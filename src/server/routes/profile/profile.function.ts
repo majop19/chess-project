@@ -1,4 +1,4 @@
-import { type IUser } from "#front/utils/types";
+import { type IUser } from "#back/utils/types";
 import { type NextFunction, type Request, type Response } from "express";
 import { fileTypeFromBuffer } from "file-type";
 import fs from "fs";

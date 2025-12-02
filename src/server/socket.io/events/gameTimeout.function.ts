@@ -1,5 +1,5 @@
 import { EndChessGame } from "#back/routes/game/game.function";
-import { type ChessGameTimeoutType } from "#front/utils/types";
+import { type ChessGameTimeoutType } from "#back/utils/types";
 import { ObjectId } from "mongoose";
 import { type ServerType } from "#back/socket.io/socket.types";
 

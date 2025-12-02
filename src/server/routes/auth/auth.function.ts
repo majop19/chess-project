@@ -4,7 +4,7 @@ import passport from "passport";
 import { Error } from "mongoose";
 import { ChessProfile } from "#back/models/chessProfile/chessProfile.model";
 
-import { type IChessProfile, type IUser } from "#front/utils/types";
+import { type IChessProfile, type IUser } from "#back/utils/types";
 import { User } from "#back/models/user.model";
 
 export const signup = async (req: Request, res: Response) => {

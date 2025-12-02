@@ -8,7 +8,7 @@ import {
   type ServerType,
   type SocketServerType,
 } from "#back/socket.io/socket.types";
-import { type ChessGameTimerType } from "#front/utils/types";
+import { type ChessGameTimerType } from "#back/utils/types";
 import { gameTimeout } from "#back/socket.io/events/gameTimeout.function";
 
 export const ChessGameEventHandler = (

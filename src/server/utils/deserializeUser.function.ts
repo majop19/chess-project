@@ -1,5 +1,5 @@
 import { User } from "#back/models/user.model";
-import { type IUser } from "#front/utils/types";
+import { type IUser } from "#back/utils/types";
 import { ObjectId } from "mongoose";
 
 async function deserializeUser(

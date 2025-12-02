@@ -3,7 +3,7 @@ import GoogleStrategy from "passport-google-oauth20";
 import { User } from "#back/models/user.model";
 import bcrypt from "bcryptjs";
 import { ChessProfile } from "#back/models/chessProfile/chessProfile.model";
-import { type IChessProfile, type IUser } from "#front/utils/types";
+import { type IChessProfile, type IUser } from "#back/utils/types";
 
 export const localStrategy = new LocalStrategy.Strategy(
   { usernameField: "email" },

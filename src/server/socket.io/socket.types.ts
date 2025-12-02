@@ -5,7 +5,7 @@ import {
   type MoveDataGameEventType,
   type TimeControlType,
   type TimeIncrementType,
-} from "#front/utils/types";
+} from "#back/utils/types";
 import mongoose, { ObjectId } from "mongoose";
 import { Server, Socket } from "socket.io";
 
