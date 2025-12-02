@@ -1,8 +1,8 @@
-import { ChessProfile } from "#back/models/chessProfile/chessProfile.model";
-import { Game } from "#back/models/game.model";
-import { Move } from "#back/models/move.model";
-import { User } from "#back/models/user.model";
-import { predictEloChanges } from "#back/utils/calculateChessGameElo";
+import { ChessProfile } from "./../../models/chessProfile/chessProfile.model";
+import { Game } from "./../../models/game.model";
+import { Move } from "./../../models/move.model";
+import { User } from "./../..//models/user.model";
+import { predictEloChanges } from "./../..//utils/calculateChessGameElo";
 import type {
   ChessGameTimerType,
   ColorType,
@@ -12,7 +12,7 @@ import type {
   ResultChessGameType,
   IUser,
   IMove,
-} from "#back/utils/types";
+} from "./../..//utils/types";
 import mongoose, { ObjectId } from "mongoose";
 
 export const createChessGame = async (

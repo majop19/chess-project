@@ -7,7 +7,7 @@ import {
   resetPassword,
   signup,
   verifyEmail,
-} from "#back/routes/auth/auth.function";
+} from "./../../routes/auth/auth.function";
 import passport from "passport";
 
 const router: express.Router = express.Router();

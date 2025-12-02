@@ -1,25 +1,25 @@
 import express from "express";
 import cors from "cors";
-import AuthRouter from "#back/routes/auth/auth.route";
-import ProfileRouter from "#back/routes/profile/profile.route";
-import ProblemsRouter from "#back/routes/problems/problems.route";
+import AuthRouter from "./routes/auth/auth.route";
+import ProfileRouter from "./routes/profile/profile.route";
+import ProblemsRouter from "./routes/problems/problems.route";
 import passport from "passport";
 import dotenv from "dotenv";
-import { connectDB } from "#back/db/connectDB";
+import { connectDB } from "./db/connectDB";
 import compression from "compression";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
-import { onlyForHandshake } from "#back/middleware/onlyForHandshake";
-import sessionMiddleware from "#back/middleware/sessionMiddleware";
-import vikeRenderPage from "#back/middleware/vikeRenderPage";
-import { googleStrategy, localStrategy } from "#back/utils/authStrategy";
-import deserializeUser from "#back/utils/deserializeUser.function";
-import { WaitingRoomGameEventHandler } from "#back/socket.io/events/WaitingRoomGameEvent";
-import { ServerType } from "#back/socket.io/socket.types";
-import { ChessGameEventHandler } from "#back/socket.io/events/ChessGameEvent";
+import { onlyForHandshake } from "./middleware/onlyForHandshake";
+import sessionMiddleware from "./middleware/sessionMiddleware";
+import vikeRenderPage from "./middleware/vikeRenderPage";
+import { googleStrategy, localStrategy } from "./utils/authStrategy";
+import deserializeUser from "./utils/deserializeUser.function";
+import { WaitingRoomGameEventHandler } from "./socket.io/events/WaitingRoomGameEvent";
+import { ServerType } from "./socket.io/socket.types";
+import { ChessGameEventHandler } from "./socket.io/events/ChessGameEvent";
 import mongoose, { ObjectId } from "mongoose";
 import { createDevMiddleware } from "vike/server";
-import { root } from "#back/root";
+import { root } from "./root";
 import tailwindcss from "@tailwindcss/vite";
 
 async function startServer() {

@@ -1,7 +1,7 @@
-import { EndChessGame } from "#back/routes/game/game.function";
-import { type ChessGameTimeoutType } from "#back/utils/types";
+import { EndChessGame } from "./../../routes/game/game.function";
+import { type ChessGameTimeoutType } from "./../../utils/types";
 import { ObjectId } from "mongoose";
-import { type ServerType } from "#back/socket.io/socket.types";
+import { type ServerType } from "./../../socket.io/socket.types";
 
 export const gameTimeout = (
   io: ServerType,

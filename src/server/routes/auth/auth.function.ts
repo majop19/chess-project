@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { type NextFunction, type Request, type Response } from "express";
 import passport from "passport";
 import { Error } from "mongoose";
-import { ChessProfile } from "#back/models/chessProfile/chessProfile.model";
+import { ChessProfile } from "../../models/chessProfile/chessProfile.model";
 
 import { type IChessProfile, type IUser } from "#back/utils/types";
 import { User } from "#back/models/user.model";

@@ -1,7 +1,7 @@
 import {
   type ServerType,
   type SocketServerType,
-} from "#back/socket.io/socket.types";
+} from "./../../socket.io/socket.types";
 
 export const WaitingRoomGameEventHandler = async (
   io: ServerType,

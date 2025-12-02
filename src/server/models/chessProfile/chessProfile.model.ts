@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { EloRatingsSchema } from "#back/models/chessProfile/eloRating.model";
+import { EloRatingsSchema } from "./../../models/chessProfile/eloRating.model";
 import mongoose from "mongoose";
-import { type IChessProfile } from "#back/utils/types";
+import { type IChessProfile } from "./../../utils/types";
 
 const ChessProfileSchema = new Schema<IChessProfile>(
   {

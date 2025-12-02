@@ -1,6 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
-import { MoveSchema } from "#back/models/move.model";
-import { type IGame } from "#back/utils/types";
+import { MoveSchema } from "./../models/move.model";
+import { type IGame } from "./../utils/types";
 
 export const GameSchema = new Schema<IGame>(
   {

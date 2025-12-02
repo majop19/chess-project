@@ -1,5 +1,5 @@
-import { User } from "#back/models/user.model";
-import { type ChessProfileLean, type IUser } from "#back/utils/types";
+import { User } from "./../models/user.model";
+import { type ChessProfileLean, type IUser } from "./../utils/types";
 import { type Request, type Response } from "express";
 import { renderPage } from "vike/server";
 
