@@ -7,7 +7,7 @@
     "dev": "ts-node -r tsconfig-paths/register src/server/server.ts",
     "nodemon": "nodemon --exec tsx src/server/server.ts",
     "build": "tsc -b && vike build",
-    "start": "node dist/server.js"
+    "start": "node dist/server/server.js"
   },
   "imports": {
     "#front/*": "./src/frontend/*",
