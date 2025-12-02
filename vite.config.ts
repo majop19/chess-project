@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import vike from "vike/plugin";
 import tailwindcss from "@tailwindcss/vite";
-import { root } from "#back/utils/root";
+import { root } from "#back/root";
 // https://vite.dev/config/
 export default defineConfig({
   root: root,
@@ -12,7 +12,7 @@ export default defineConfig({
     alias: [
       {
         find: "#front",
-        replacement: path.resolve(__dirname, "./src/client"),
+        replacement: path.resolve(__dirname, "./src/frontend"),
       },
       {
         find: "#back",

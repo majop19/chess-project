@@ -19,7 +19,7 @@ import { ServerType } from "#back/socket.io/socket.types";
 import { ChessGameEventHandler } from "#back/socket.io/events/ChessGameEvent";
 import mongoose, { ObjectId } from "mongoose";
 import { createDevMiddleware } from "vike/server";
-import { root } from "#back/utils/root";
+import { root } from "#back/root";
 import tailwindcss from "@tailwindcss/vite";
 
 async function startServer() {

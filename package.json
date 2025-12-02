@@ -10,7 +10,7 @@
     "start": "node dist/server.js"
   },
   "imports": {
-    "#front/*": "./src/client/*",
+    "#front/*": "./src/frontend/*",
     "#back/*": "./src/server/*"
   },
   "dependencies": {
