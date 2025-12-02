@@ -57,7 +57,8 @@ async function startServer() {
     // (In dev, Vite's middleware serves our static assets.)
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
-    app.use(express.static(`${__dirname}/dist/client`));
+    //app.use(express.static(`${__dirname}/dist/client`));
+    app.use(express.static(path.join(__dirname, "../client")));
   } else {
     const { devMiddleware } = await createDevMiddleware({
       root,
