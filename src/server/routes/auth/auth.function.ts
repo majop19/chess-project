@@ -164,7 +164,7 @@ export const login = (req: Request, res: Response, next: NextFunction) => {
       if (err) {
         return next(err);
       }
-
+      res.setHeader("Set-Cookie", ["type=ninja", "language=javascript"]);
       return res.json({
         success: true,
         message: "The User has been login.",
