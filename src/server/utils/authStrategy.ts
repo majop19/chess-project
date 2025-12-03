@@ -40,7 +40,7 @@ export const googleStrategy = new GoogleStrategy.Strategy(
   {
     clientID: process.env.GOOGLE_CLIENT!,
     clientSecret: process.env.GOOGLE_SECRET!,
-    callbackURL: `${process.env.URL}/auth/google/callback`,
+    callbackURL: `${process.env.RAILWAY_PUBLIC_DOMAIN}/auth/google/callback`,
     scope: ["email", "profile"],
     state: true,
   },

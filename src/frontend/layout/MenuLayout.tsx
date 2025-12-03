@@ -31,7 +31,7 @@ export const MenuLayout = () => {
   const mutation = useMutation({
     mutationFn: async () => {
       return axios
-        .post("http://localhost:3000/auth/logout")
+        .post("/auth/logout")
         .then(async () => await reload())
         .catch((error) => {
           console.log(error);

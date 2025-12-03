@@ -63,12 +63,7 @@ export const Page = () => {
   const mutation = useMutation({
     mutationFn: async (value: ForgotPasswordSchemaType) => {
       return axios
-        .post(
-          `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
-            process.env.URL
-          }/auth/reset-password/${pageContext.routeParams.token}`,
-          value
-        )
+        .post(`/auth/reset-password/${pageContext.routeParams.token}`, value)
         .then(async (response) => {
           if (response.status === 200) {
             toast.success("Your password has been reset.");

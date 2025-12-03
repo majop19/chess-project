@@ -34,12 +34,7 @@ export const Page = () => {
   const mutation = useMutation({
     mutationFn: async (value: ForgotPasswordSchemaType) => {
       return axios
-        .post(
-          `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
-            process.env.URL
-          }/auth/forgot-password`,
-          value
-        )
+        .post(`/auth/forgot-password`, value)
         .catch(() => toast.error("An error occured."));
     },
   });

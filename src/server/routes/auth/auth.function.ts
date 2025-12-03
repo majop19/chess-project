@@ -3,7 +3,6 @@ import { type NextFunction, type Request, type Response } from "express";
 import passport from "passport";
 import { Error } from "mongoose";
 import { ChessProfile } from "../../models/chessProfile/chessProfile.model.js";
-
 import { type IChessProfile, type IUser } from "./../../utils/types.js";
 import { User } from "./../../models/user.model.js";
 

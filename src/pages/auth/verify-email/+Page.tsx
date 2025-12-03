@@ -29,12 +29,7 @@ export const Page = () => {
   const mutation = useMutation({
     mutationFn: async (code: string) => {
       return axios
-        .post(
-          `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
-            process.env.URL
-          }/auth/verify-email`,
-          { code: code }
-        )
+        .post(`$/auth/verify-email`, { code: code })
         .then(() => navigate("/"))
         .catch((error) => {
           if (!error.response.data.invalid) setIsTokenExpired(true);
