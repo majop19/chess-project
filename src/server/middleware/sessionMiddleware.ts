@@ -7,6 +7,8 @@ const sessionMiddleware = session({
     sameSite: "lax",
     maxAge: 1209600000, // 2 weeks
     secure: process.env.NODE_ENV === "production",
+    domain:
+      process.env.NODE_ENV === "production" ? `.${process.env.URL}` : undefined,
   },
   saveUninitialized: false,
   resave: false,
