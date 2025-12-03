@@ -164,7 +164,11 @@ export const login = (req: Request, res: Response, next: NextFunction) => {
       if (err) {
         return next(err);
       }
-      res.setHeader("Set-Cookie", ["type=ninja", "language=javascript"]);
+      res.setHeader("Set-Cookie", [
+        "type=ninja",
+        "language=javascript",
+        "proxy_set_header X-Forwarded-Proto $scheme",
+      ]);
       return res.json({
         success: true,
         message: "The User has been login.",
