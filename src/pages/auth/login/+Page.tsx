@@ -52,7 +52,8 @@ export const Page = () => {
           `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
             process.env.URL
           }/auth/login`,
-          values
+          values,
+          { withCredentials: true }
         )
         .then(async (response) => {
           if (response.status === 200) {
