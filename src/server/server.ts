@@ -23,7 +23,6 @@ import { root } from "./root.js";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { fileURLToPath } from "url";
-import cookieParser from "cookie-parser";
 
 async function startServer() {
   dotenv.config();
@@ -33,7 +32,6 @@ async function startServer() {
   const nodeServer = createServer(app);
   const io = new Server<ServerType>(nodeServer);
   app.use(compression());
-  app.use(cookieParser());
   app.use(express.json());
   app.use(express.static("public"));
   app.use(

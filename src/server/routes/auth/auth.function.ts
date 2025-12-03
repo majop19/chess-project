@@ -164,13 +164,12 @@ export const login = (req: Request, res: Response, next: NextFunction) => {
       if (err) {
         return next(err);
       }
-      console.log(req.cookies);
+
       return res.json({
         success: true,
         message: "The User has been login.",
         // @ts-expect-error user has id and email
         user: { id: user.id, email: user.email },
-        cookies: req.cookies,
       });
     });
   })(req, res, next);

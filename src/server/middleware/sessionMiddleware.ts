@@ -8,7 +8,9 @@ const sessionMiddleware = session({
     maxAge: 1209600000, // 2 weeks
     secure: "auto",
     domain:
-      process.env.NODE_ENV === "production" ? `${process.env.URL}` : undefined,
+      process.env.NODE_ENV === "production"
+        ? `${process.env.RAILWAY_PUBLIC_DOMAIN}`
+        : undefined,
   },
   saveUninitialized: false,
   resave: false,
