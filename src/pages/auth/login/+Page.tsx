@@ -50,8 +50,6 @@ export const Page = () => {
       return axios
         .post(`/auth/login`, values, { withCredentials: true })
         .then(async (response) => {
-          response.headers["set-cookie"]?.forEach((cookie) => {});
-
           if (response.status === 200) {
             console.log(response);
             await navigate("/");
