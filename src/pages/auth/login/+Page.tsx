@@ -51,6 +51,7 @@ export const Page = () => {
         .post(`/auth/login`, values, { withCredentials: true })
         .then(async (response) => {
           if (response.status === 200) {
+            console.log(response);
             await navigate("/");
           }
         })
