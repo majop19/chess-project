@@ -1,5 +1,5 @@
 import express from "express";
-//import cors from "cors";
+import cors from "cors";
 import AuthRouter from "./routes/auth/auth.route.js";
 import ProfileRouter from "./routes/profile/profile.route.js";
 import ProblemsRouter from "./routes/problems/problems.route.js";
@@ -35,12 +35,13 @@ async function startServer() {
 
   app.use(express.json());
   app.use(express.static("public"));
-  //app.use(
-  //  cors({
-  //    origin: `${isProduction ? "https://" : "http://"}${process.env.URL}`,
-  //   credentials: true,
-  // })
-  // );
+  app.use(
+    cors({
+      origin: `${isProduction ? "https://" : "http://"}${process.env.URL}`,
+      credentials: true,
+      exposedHeaders: ["Set-Cookie"],
+    })
+  );
 
   app.use(sessionMiddleware);
   app.use(passport.initialize());
