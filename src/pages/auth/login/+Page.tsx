@@ -61,6 +61,7 @@ export const Page = () => {
           }
         })
         .catch((error) => {
+          console.log(error);
           throw new Error(error.response.data.message);
         });
     },
