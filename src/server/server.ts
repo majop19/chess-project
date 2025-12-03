@@ -35,7 +35,12 @@ async function startServer() {
 
   app.use(express.json());
   app.use(express.static("public"));
-  app.use(cors({ origin: process.env.URL, credentials: true }));
+  app.use(
+    cors({
+      origin: `${isProduction ? "https://" : "http://"}${process.env.URL}`,
+      credentials: true,
+    })
+  );
 
   app.use(sessionMiddleware);
   app.use(passport.initialize());
