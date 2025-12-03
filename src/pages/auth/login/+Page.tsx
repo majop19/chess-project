@@ -48,13 +48,7 @@ export const Page = () => {
   const mutation = useMutation({
     mutationFn: async (values: FormSchemaType) => {
       return axios
-        .post(
-          `${process.env.NODE_ENV === "production" ? "https" : "http"}://${
-            process.env.URL
-          }/auth/login`,
-          values,
-          { withCredentials: true }
-        )
+        .post(`/auth/login`, values, { withCredentials: true })
         .then(async (response) => {
           if (response.status === 200) {
             await navigate("/");
