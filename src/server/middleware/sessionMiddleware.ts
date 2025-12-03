@@ -4,7 +4,7 @@ import session from "express-session";
 const sessionMiddleware = session({
   secret: process.env.SESSION_SECRET!,
   cookie: {
-    sameSite: "none",
+    sameSite: "lax",
     maxAge: 1209600000, // 2 weeks
     secure: process.env.NODE_ENV === "production",
   },

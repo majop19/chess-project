@@ -173,6 +173,7 @@ export const login = (req: Request, res: Response, next: NextFunction) => {
       });
     });
   })(req, res, next);
+  console.log(res);
 };
 
 export const logout = (req: Request, res: Response, next: NextFunction) => {
