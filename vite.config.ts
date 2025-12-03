@@ -9,6 +9,9 @@ import { root } from "#back/root";
 export default defineConfig({
   root: process.env.NODE_ENV === "production" ? undefined : root,
   plugins: [react(), vike(), tailwindcss()],
+  server: {
+    port: Number(process.env.PORT) || 3000,
+  },
   resolve: {
     alias: [
       {
