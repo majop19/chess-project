@@ -37,7 +37,7 @@ async function startServer() {
   app.use(express.static("public"));
   app.use(
     cors({
-      origin: `${isProduction ? "https://" : "http://"}${process.env.URL}`,
+      origin: true,
       credentials: true,
       exposedHeaders: ["Set-Cookie"],
     })
