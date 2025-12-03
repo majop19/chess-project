@@ -7,4 +7,5 @@ export default {
   passToClient: ["user", "loginAccessError"],
   title: "chessApp Project",
   disableUrlNormalization: true,
+  port: Number(process.env.PORT) || 3000,
 } satisfies Config;
