@@ -23,7 +23,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "#front/components/ui/avatar";
-
+import { bufferToObjectId } from "#front/utils/bufferToHex.function";
 export const Page = () => {
   const pageContext = usePageContext();
   const [currentTimer, setCurrentTimer] = useState<ChessGameTimerType>({
@@ -32,13 +32,19 @@ export const Page = () => {
   });
   const [isTimersOpen, setIsTimersOpen] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
-  // @ts-expect-error -- fix type
-  const user = pageContext.user as UserGuardPageContext;
+
   const increment =
     currentTimer.timeIncrement != 0
       ? ` | ${currentTimer.timeIncrement}`
       : " min";
   const playerTimer = currentTimer.timeControl.toString() + ":00";
+
+  const user = {
+    // @ts-expect-error -- fix type
+    ...pageContext.user,
+    // @ts-expect-error -- fix type
+    id: bufferToObjectId(pageContext.user.id),
+  } as UserGuardPageContext;
 
   const socket = useSocket({
     auth: {

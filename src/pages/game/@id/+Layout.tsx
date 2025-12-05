@@ -8,7 +8,6 @@ import { ChessGameProvider } from "#front/context/ChessGameContext";
 export const Layout = ({ children }: { children: ReactNode }) => {
   const data = useData<GameData>();
 
-  console.log("render layout game", data.game._id);
   const timeCurrentPlayer =
     data.white.isRunning == true ? data.game.whiteTime : data.game.blackTime;
   return (

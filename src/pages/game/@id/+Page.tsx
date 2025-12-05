@@ -7,14 +7,21 @@ import { GameData } from "./+data";
 import { ChessGame } from "./chessGame";
 import { GameLayout } from "./gameLayout";
 import { DialogEndGame } from "./DialogEndGame";
+import { bufferToObjectId } from "#front/utils/bufferToHex.function.ts";
 
 export const Page = () => {
   const pageContext = usePageContext();
   const { white, black, game } = useData<GameData>();
-  // @ts-expect-error -- fix type
-  const user = pageContext.user as UserGuardPageContext;
 
-  console.log("render page game");
+  const user = {
+    // @ts-expect-error -- fix type
+    ...pageContext.user,
+    // @ts-expect-error -- fix type
+    id: bufferToObjectId(pageContext.user.id),
+  } as UserGuardPageContext;
+
+  console.log("render page game", game._id, white.id, black.id);
+
   const socket = useSocket({
     auth: {
       userId: user.id,
@@ -25,8 +32,10 @@ export const Page = () => {
   const opponentSide = white.player == "user" ? "blackTime" : "whiteTime";
 
   const userSide = white.player == "user" ? "whiteTime" : "blackTime";
+  //@ts-expect-error Convert game._id from Buffer to ObjectId
+  const gameId = bufferToObjectId(game._id);
 
-  console.log(userSide, opponentSide);
+  console.log(userSide, opponentSide, gameId);
   return (
     <div className="flex justify-center gap-10 items-center h-full w-full">
       <div className="flex flex-col mb-auto justify-end m-0">
@@ -37,8 +46,8 @@ export const Page = () => {
           <GameTimer socket={socket} player={opponentSide} />
         </UserGameProfile>
         <DialogEndGame socket={socket}>
-          {/* @ts-expect-error type is correct */}
-          <ChessGame socket={socket} gameId={game._id} />
+          {/* @ts-expect-error Convert game._id from Buffer to ObjectId */}
+          <ChessGame socket={socket} gameId={gameId} />
         </DialogEndGame>
         <UserGameProfile
           user={userSide == "whiteTime" ? white : black}

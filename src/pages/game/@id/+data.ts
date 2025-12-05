@@ -1,4 +1,5 @@
 import { Game } from "#front/models/game.model";
+import { replacerFunc } from "#front/utils/replaceFunction.ts";
 import { type IGame } from "#front/utils/types";
 import { render } from "vike/abort";
 import { type PageContextServer } from "vike/types";
@@ -7,15 +8,14 @@ export type GameData = Awaited<ReturnType<typeof data>>;
 
 export const data = async (pageContext: PageContextServer) => {
   const gameId = pageContext.routeParams.id;
+
   const game: IGame | null = await Game.findOne({
     _id: gameId,
     // @ts-expect-error -- fix type
     $or: [{ whiteId: pageContext.user?.id }, { blackId: pageContext.user?.id }],
-  });
+  }).populate("whiteId blackId");
 
   if (!game) throw render(403);
-
-  await game.populate("whiteId blackId");
 
   await game.whiteId.populate("chessProfile");
   await game.blackId.populate("chessProfile");
@@ -59,15 +59,29 @@ export const data = async (pageContext: PageContextServer) => {
     isRunning: game.turn == "black" && game.status == "active",
     elo: game.blackId.chessProfile.elo[timeStamp],
   };
-  console.log(
-    "time",
-    game.whiteTime,
-    game.lastUpdateTime.getTime(),
-    Date.now()
-  );
+
+  console.log("moves", game.moves);
   return {
     white: whitePlayer,
     black: blackPlayer,
-    game: game,
+    game: {
+      _id: game._id,
+      timeControl: game.timeControl,
+      timeIncrement: game.timeIncrement,
+      isRated: game.isRated,
+      status: game.status,
+      turn: game.turn,
+      winner: game.winner,
+      pgn: game.pgn,
+      boardState: game.boardState,
+      castlingRights: game.castlingRights,
+      takesMoveNumber: game.takesMoveNumber,
+      fullMoveNumber: game.fullMoveNumber,
+      lastUpdateTime: game.lastUpdateTime,
+      createdAt: game.createdAt,
+      whiteTime: game.whiteTime,
+      blackTime: game.blackTime,
+      moves: JSON.parse(JSON.stringify(game.moves, replacerFunc())),
+    },
   };
 };

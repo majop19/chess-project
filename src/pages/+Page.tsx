@@ -25,7 +25,11 @@ const Page = () => {
           Welcome to My ChessGame
         </h1>
         {user == null ? (
-          <Button variant="outline" className="mt-5 w-md h-8 text-md font-bold">
+          <Button
+            variant="outline"
+            className="mt-5 w-md h-8 text-md font-bold"
+            onClick={() => navigate("/auth/login")}
+          >
             Login To Play
           </Button>
         ) : null}

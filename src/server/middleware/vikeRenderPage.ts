@@ -26,6 +26,7 @@ const vikeRenderPage = async (req: Request, res: Response) => {
         }
       : null,
   };
+  console.log("vikeRenderPage user:", pageContextInit.user);
   const pageContext = await renderPage(pageContextInit);
   if (pageContext.errorWhileRendering) {
     // Install error tracking here, see https://vike.dev/error-tracking

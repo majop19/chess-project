@@ -88,8 +88,8 @@ async function startServer() {
   const rematchInvitation: mongoose.Types.ObjectId[] = [];
   const activeGames: Map<ObjectId, NodeJS.Timeout> = new Map(); // stocke les parties actifs avec timeout
   io.on("connection", (socket) => {
-    console.log("connection");
     const userId = socket.handshake.auth?.userId || null;
+    console.log("connection", userId);
 
     WaitingRoomGameEventHandler(io, socket);
     ChessGameEventHandler(io, socket, rematchInvitation, activeGames);
@@ -107,10 +107,10 @@ async function startServer() {
 
   app.use("/problems", ProblemsRouter);
 
-  // app.get("/health", (_, res) => {
-  // for health check
-  //  res.status(200).send("ok");
-  //});
+  app.get("/health", (_, res) => {
+    // for health check
+    res.status(200).send("ok");
+  });
   // Vike middleware.
   app.get("/{*vikeCatchAll}", vikeRenderPage);
 

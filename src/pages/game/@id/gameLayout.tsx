@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { GameData } from "./+data";
 import { useData } from "vike-react/useData";
 import { SocketClientType } from "#front/utils/socket.types";
@@ -32,6 +32,7 @@ import {
 } from "#front/components/ui/popover";
 import { useUserWaitingRoom } from "#front/hooks/use-userWaitingRoom";
 import { IMove, UserGuardPageContext } from "#front/utils/types";
+import { bufferToObjectId } from "#front/utils/bufferToHex.function.ts";
 
 export const GameLayout = ({ socket }: { socket: SocketClientType }) => {
   const { game, white, black } = useData<GameData>();
@@ -221,6 +222,14 @@ const ChessGameEloLayout = ({ socket }: { socket: SocketClientType }) => {
       ratingDeviation: 0,
     },
   });
+  // @ts-expect-error -- fix type
+  const whiteId = bufferToObjectId(white.id);
+  const user = {
+    // @ts-expect-error -- fix type
+    ...pageContext.user,
+    // @ts-expect-error -- fix type
+    id: bufferToObjectId(pageContext.user?.id),
+  } as UserGuardPageContext;
 
   useEffect(() => {
     if (
@@ -243,7 +252,7 @@ const ChessGameEloLayout = ({ socket }: { socket: SocketClientType }) => {
   }, [socket, black.elo, game.status, white.elo]);
 
   // @ts-expect-error -- fix type
-  const colorPlayer = pageContext.user?.id === game.whiteId ? "white" : "black";
+  const colorPlayer = user.id === whiteId ? "white" : "black";
   const colorOpponent = colorPlayer === "white" ? "black" : "white";
 
   const predictResult = calculateChessGameElo(
@@ -317,10 +326,20 @@ export const GameisFinishedButton = ({
   const [rematchProposition, setRematchProposition] = useState<boolean>(false);
   const [isWaiting, setIsWaiting] = useState<boolean>(false);
   const { game, white, black } = useData<GameData>();
+  // @ts-expect-error -- fix type
+  const whiteId = useMemo(() => bufferToObjectId(white.id), [white.id]);
+  // @ts-expect-error -- fix type
+  const blackId = useMemo(() => bufferToObjectId(black.id), [black.id]);
 
   const pageContext = usePageContext();
-  // @ts-expect-error -- fix type
-  const user = pageContext.user as UserGuardPageContext;
+
+  console.log("rematch pros invite", rematchProposition, rematchInvitation);
+  const user = {
+    // @ts-expect-error -- fix type
+    ...pageContext.user,
+    // @ts-expect-error -- fix type
+    id: bufferToObjectId(pageContext.user?.id),
+  } as UserGuardPageContext;
 
   useEffect(() => {
     if (game.status !== "active") {
@@ -331,7 +350,7 @@ export const GameisFinishedButton = ({
       if (game.status === "active") {
         socket.emit(
           "declineRematch",
-          white.player == "user" ? black.id : white.id
+          white.player == "user" ? blackId : whiteId
         );
         return;
       }
@@ -347,7 +366,7 @@ export const GameisFinishedButton = ({
       socket.off("rematchProposition", rematchProposition);
       socket.off("opponentHasDeclinedRematch", opponentHasDeclinedRematch);
     };
-  }, [game.status, white.player, black.id, socket, white, setIsOpen]);
+  }, [game.status, white.player, blackId, socket, white, setIsOpen, whiteId]);
 
   const mutation = useUserWaitingRoom(socket, user, setIsWaiting);
 
@@ -389,8 +408,8 @@ export const GameisFinishedButton = ({
                     e.preventDefault();
                     socket.emit("rematchInvitation", {
                       // @ts-expect-error type is good
-                      white: { id: white.id, player: white.player },
-                      black: black.id,
+                      white: { id: whiteId, player: white.player },
+                      black: blackId,
                       infoGame: {
                         timeControl: game.timeControl,
                         timeIncrement: game.timeIncrement,
@@ -416,7 +435,7 @@ export const GameisFinishedButton = ({
                     onClick={() => {
                       socket.emit(
                         "declineRematch",
-                        white.player == "user" ? black.id : white.id
+                        white.player == "user" ? blackId : whiteId
                       );
                       setRematchProposition(false);
                     }}
@@ -427,8 +446,8 @@ export const GameisFinishedButton = ({
                     onClick={() => {
                       socket.emit("rematchInvitation", {
                         // @ts-expect-error type is good
-                        white: { id: white.id, player: white.player },
-                        black: black.id,
+                        white: { id: whiteId, player: white.player },
+                        black: blackId,
                         infoGame: {
                           timeControl: game.timeControl,
                           timeIncrement: game.timeIncrement,

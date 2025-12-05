@@ -6,6 +6,5 @@ export default {
   stream: "node",
   passToClient: ["user", "loginAccessError"],
   title: "chessApp Project",
-  disableUrlNormalization: true,
-  port: Number(process.env.PORT) || 3000,
+  //port: Number(process.env.PORT) || 3000,
 } satisfies Config;

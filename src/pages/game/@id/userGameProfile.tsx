@@ -108,7 +108,7 @@ export const UserGameProfile = ({
   };
 
   return (
-    <div className="flex gap-3 w-[800px] items-center h-[80px]">
+    <div className="flex gap-3 w-[800px] items-center h-20">
       <Avatar className="size-11 rounded-md">
         <AvatarImage src={user.image ?? undefined} />
         <AvatarFallback className="bg-secondary text-2xl font-semibold rounded-md capitalize">
@@ -190,8 +190,6 @@ export const GameTimer = ({
       console.log("navigate to game id");
       await render(`/game/${gameId}`);
       lastUpdateTimeRef.current.newGame = true;
-
-      console.log("after render", game._id);
     }
     socket.on("sendChessGameMove", NewMove);
     socket.on("sendChessGameId", sendChessGameId);
@@ -210,7 +208,6 @@ export const GameTimer = ({
     playerTime,
     socket,
     game,
-    game._id,
     game.status,
     game.blackTime,
     game.lastUpdateTime,
