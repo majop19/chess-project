@@ -21,9 +21,9 @@ export default defineConfig({
       },
     ],
   },
-  //build: {
-  //  outDir: "dist/client",
-  //  manifest: true,
-  // emptyOutDir: false,
-  // },
+  build: {
+    outDir: "dist/client",
+    manifest: true,
+    emptyOutDir: false,
+  },
 });
