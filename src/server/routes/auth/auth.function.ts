@@ -5,6 +5,11 @@ import { Error } from "mongoose";
 import { ChessProfile } from "../../models/chessProfile/chessProfile.model.js";
 import { type IChessProfile, type IUser } from "./../../utils/types.js";
 import { User } from "./../../models/user.model.js";
+import {
+  sendPasswordResetEmail,
+  sendResetSuccessEmail,
+  sendVerificationEmail,
+} from "#back/mailtrap/email.js";
 
 export const signup = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
@@ -36,14 +41,14 @@ export const signup = async (req: Request, res: Response) => {
     await chessProfile.save();
     await user.save();
 
-    req.login({ id: user._id, email: user.email }, (err) => {
+    req.login({ id: user._id, email: user.email }, async (err) => {
       if (err) {
         console.log("Error in login signup");
         return res
           .status(500)
           .json({ success: false, message: "Session creation failed" });
       }
-      // await sendVerificationEmail(email, verificationToken);
+      await sendVerificationEmail(email, verificationToken);
 
       return res.status(201).json({
         success: true,
@@ -138,7 +143,7 @@ export const resendTokenEmail = async (req: Request, res: Response) => {
 
     await user.save();
 
-    // await sendVerificationEmail(user.email, verificationToken)
+    await sendVerificationEmail(user.email, verificationToken);
 
     res.json({
       success: true,
@@ -220,7 +225,10 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
     await user.save();
 
-    // await sendPasswordResetEmail(user.email,`${process.env.CLIENT_URL}/reset-password/${resetPasswordToken}`);
+    await sendPasswordResetEmail(
+      user.email,
+      `${process.env.CLIENT_URL}/reset-password/${resetPasswordToken}`
+    );
 
     res.json({
       success: true,
@@ -266,7 +274,7 @@ export const resetPassword = async (req: Request, res: Response) => {
 
     await user.save();
 
-    // await sendResetSuccessEmail(user.email);
+    await sendResetSuccessEmail(user.email);
 
     res.json({ success: true, message: "Password updated successfully" });
   } catch (error) {

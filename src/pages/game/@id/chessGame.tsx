@@ -56,13 +56,13 @@ export const ChessGame = ({
         promotion: piece[1]?.toLowerCase(),
       });
 
-      // const playerColor = white.player == "user" ? "w" : "b";
-      // if (move === null) return false;
+      const playerColor = white.player == "user" ? "w" : "b";
+      if (move === null) return false;
 
-      // if (move.color != playerColor) {
-      //  setChessGame(new Chess(move.before));
-      //  return false;
-      // }
+      if (move.color != playerColor) {
+        setChessGame(new Chess(move.before));
+        return false;
+      }
 
       const bite = {
         piece: move.piece,

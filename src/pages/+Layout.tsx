@@ -11,7 +11,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <Providers>
       <Toaster richColors={true} />
-      <div className="min-w-screen min-h-screen">
+      <div className="min-w-screen min-h-screen bg-background">
         <MenuLayout />
         {children}
       </div>
