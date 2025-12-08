@@ -8,7 +8,6 @@ import {
   type ServerType,
   type SocketServerType,
 } from "./../../socket.io/socket.types.js";
-import { type ChessGameTimerType } from "./../../utils/types.js";
 import { gameTimeout } from "./../../socket.io/events/gameTimeout.function.js";
 
 export const ChessGameEventHandler = (
@@ -17,42 +16,6 @@ export const ChessGameEventHandler = (
   rematchInvitation: mongoose.Types.ObjectId[],
   activeGames: Map<ObjectId, NodeJS.Timeout>
 ) => {
-  socket.on("createChessGame", async (user, opponent) => {
-    console.log("begin create", user, opponent);
-    const waitingRoom = Array.from(socket.rooms)
-      .find((room) => room.includes("WaitingRoom:"))
-      ?.replace("WaitingRoom:", "")
-      .split("/");
-    console.log(waitingRoom);
-    if (waitingRoom) {
-      const chessGame = await createChessGame(user.id, opponent.id, {
-        timeControl: Number(waitingRoom[0]),
-        timeIncrement: Number(waitingRoom[1]),
-      } as ChessGameTimerType);
-
-      if (chessGame == "oppenentInGame") {
-        io.to(`user:${user.id}`).emit("researchOpponent");
-        return;
-      } else {
-        console.log(`user:${opponent.id}`, socket.rooms);
-        io.to([`user:${user.id}`, `user:${opponent.id}`])
-          .timeout(2000)
-          .emit("sendChessGameId", chessGame.id, async (err) => {
-            if (err) {
-              //   console.log("erreur", err);
-              //  await Game.findByIdAndDelete(chessGame);
-              //  io.to([`user:${socket.handshake.auth?.userId || socket.data.userId}`, `user:${opponent.id}`]).emit(
-              //    "researchOpponent"
-              //  );
-            }
-          });
-        io.in([`user:${user.id}`, `user:${opponent.id}`]).socketsLeave(
-          `WaitingRoom:${Number(waitingRoom[0])}/${Number(waitingRoom[1])}`
-        );
-        gameTimeout(io, activeGames, { ...chessGame, winner: "black" });
-      }
-    }
-  });
   socket.on("newChessMove", async (gameId, moveData, gameData) => {
     const game = await UpdateChessGame(gameId, moveData, gameData);
 

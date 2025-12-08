@@ -87,11 +87,12 @@ async function startServer() {
   );
   const rematchInvitation: mongoose.Types.ObjectId[] = [];
   const activeGames: Map<ObjectId, NodeJS.Timeout> = new Map(); // stocke les parties actifs avec timeout
+  const playersInQueue: mongoose.Schema.Types.ObjectId[] = [];
   io.on("connection", (socket) => {
     const userId = socket.handshake.auth?.userId || null;
     console.log("connection", userId);
 
-    WaitingRoomGameEventHandler(io, socket);
+    WaitingRoomGameEventHandler(io, socket, playersInQueue, activeGames);
     ChessGameEventHandler(io, socket, rematchInvitation, activeGames);
 
     if (userId) {
