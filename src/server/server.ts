@@ -55,14 +55,11 @@ async function startServer() {
   });
   passport.deserializeUser(deserializeUser);
   // Vite integration
-  //const __dirname = dirname(fileURLToPath(import.meta.url));
-  //const root = `${__dirname}/..`;
   if (isProduction) {
     // In production, we need to serve our static assets ourselves.
     // (In dev, Vite's middleware serves our static assets.)
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
-    //app.use(express.static(`${__dirname}/dist/client`));
     app.use(express.static(path.join(__dirname, "../client")));
   } else {
     const { devMiddleware } = await createDevMiddleware({

@@ -14,14 +14,22 @@ const router: express.Router = express.Router();
 
 router.post("/register", signup);
 
-router.get("/google", passport.authenticate("google"));
+router.get(
+  "/google",
+  passport.authenticate("google", { failureMessage: true })
+);
 
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "/auth/register",
+    // failureRedirect: "/auth/register",
     successRedirect: "/",
-  })
+    failureMessage: true,
+  }),
+  (req) => {
+    // @ts-expect-error -- IGNORE ---
+    console.log("hhhh", req.session.messages);
+  }
 );
 
 router.post("/verify-email", verifyEmail);

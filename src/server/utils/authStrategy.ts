@@ -4,6 +4,7 @@ import { User } from "./../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { ChessProfile } from "./../models/chessProfile/chessProfile.model.js";
 import { type IChessProfile, type IUser } from "./../utils/types.js";
+import { sendVerificationEmail } from "./../mailtrap/email.js";
 
 export const localStrategy = new LocalStrategy.Strategy(
   { usernameField: "email" },
@@ -91,7 +92,7 @@ export const googleStrategy = new GoogleStrategy.Strategy(
 
         await newUser.save();
 
-        // await sendVerificationEmail(newUser.email, newUser.verificationToken)
+        await sendVerificationEmail(newUser.email, newUser.verificationToken);
       }
       cb(null, { id: newUser._id, email: newUser.email });
     } catch (error) {
