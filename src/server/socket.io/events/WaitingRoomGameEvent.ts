@@ -3,8 +3,8 @@ import {
   type ServerType,
   type SocketServerType,
 } from "./../../socket.io/socket.types.js";
-import { createChessGame } from "#back/routes/game/game.function.js";
-import { ChessGameTimerType } from "#back/utils/types.js";
+import { createChessGame } from "./../../routes/game/game.function.js";
+import { ChessGameTimerType } from "./../../utils/types.js";
 import { gameTimeout } from "./gameTimeout.function.js";
 
 export const WaitingRoomGameEventHandler = async (
