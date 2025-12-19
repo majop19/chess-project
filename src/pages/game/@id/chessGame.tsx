@@ -15,6 +15,9 @@ import { useData } from "vike-react/useData";
 import { GameData } from "./+data";
 import { useChessGameContext } from "#front/context/ChessGameContext";
 import { IMove } from "#front/utils/types";
+import { useBoardSize } from "#front/hooks/use-BoardSize.ts";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
+import { cn } from "#front/lib/utils.ts";
 
 export const ChessGame = ({
   gameId,
@@ -26,7 +29,8 @@ export const ChessGame = ({
   const { orientation, changeOrientation } = useBoardOrientationProvider();
   const { white } = useData<GameData>();
   const { chessGame, setChessGame } = useChessGameContext();
-
+  const { width } = useBoardSize();
+  const isMobile = useIsMobile();
   useEffect(() => {
     function NewMove(fen: string, moveData: IMove) {
       setChessGame(new Chess(fen));
@@ -144,11 +148,21 @@ export const ChessGame = ({
   }
 
   return (
-    <div className="flex">
+    <div className={cn("flex")}>
       <Chessboard
         position={chessGame.fen()}
         onPieceDrop={onDrop}
-        boardWidth={800}
+        boardWidth={
+          width > 1400
+            ? 800
+            : width > 1280
+            ? 700
+            : width > 1180
+            ? 600
+            : isMobile
+            ? width - 20
+            : 500
+        }
         boardOrientation={orientation}
         customDarkSquareStyle={{
           backgroundColor: "var(--color-board-black)",
@@ -156,23 +170,28 @@ export const ChessGame = ({
         customLightSquareStyle={{
           backgroundColor: "var(--color-board-white)",
         }}
-        customNotationStyle={{ fontSize: "17px", fontWeight: "600" }}
+        customNotationStyle={{
+          fontSize: isMobile ? "12px" : "17px",
+          fontWeight: "600",
+        }}
       />
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger
-            className="mb-auto cursor-pointer"
-            onClick={() => changeOrientation()}
-          >
-            <Repeat2 />
-          </TooltipTrigger>
-          <TooltipContent side="right">
-            <p className="bg-board-black/80 text-background font-semibold p-1 mr-1">
-              Flip Board
-            </p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      {isMobile ? null : (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger
+              className="mb-auto cursor-pointer"
+              onClick={() => changeOrientation()}
+            >
+              <Repeat2 />
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              <p className="bg-board-black/80 text-background font-semibold p-1 mr-1">
+                Flip Board
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      )}
     </div>
   );
 };

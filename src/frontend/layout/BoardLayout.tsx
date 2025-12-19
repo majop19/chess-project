@@ -3,7 +3,8 @@ import clsx from "clsx";
 import { ReactNode } from "react";
 
 export const BoardLayout = ({ children }: { children: ReactNode }) => {
-  const BoardSize = useBoardSize();
+  const { breakpoint: BoardSize } = useBoardSize();
+
   return (
     <>
       <div className="w-full h-screen bg-background">
@@ -16,12 +17,12 @@ export const BoardLayout = ({ children }: { children: ReactNode }) => {
               ? "w-[length:calc(100vw+3rem-(4*(100vh/10)))]"
               : BoardSize === 2
               ? "w-[length:calc(100vw-(2*(100vh/10)))]"
-              : "w-full right-[-3rem]"
+              : "w-full"
           )}
         >
           {children}
         </div>
-        <div className="absolute right-0 top-0 h-screen flex ml-auto">
+        <div className="right-0 top-0 h-screen flex ml-auto absolute">
           {new Array(BoardSize).fill(0).map((_, i) => {
             return (
               <div key={i}>

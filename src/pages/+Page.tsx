@@ -27,13 +27,13 @@ const Page = () => {
         {user == null ? (
           <Button
             variant="outline"
-            className="mt-5 w-md h-8 text-md font-bold"
+            className="mt-5 w-70 h-8 text-md font-bold"
             onClick={() => navigate("/auth/login")}
           >
             Login To Play
           </Button>
         ) : null}
-        <div className="flex justify-evenly gap-4 my-10 w-1/4">
+        <div className="flex justify-evenly gap-4 my-10 w-full sm:max-lg:w-1/2 lg:w-1/3">
           <Button
             className="w-1/3 h-12 text-lg"
             onClick={() => navigate("/game")}
@@ -41,7 +41,7 @@ const Page = () => {
             Play Games
           </Button>
           <Button
-            className="w-1/3 h-12 text-lg"
+            className="w-1/3 h-12 text-lg lg:text-md md:max-lg:text-md"
             onClick={() => navigate("/puzzles")}
             variant="secondary"
           >

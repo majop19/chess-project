@@ -48,7 +48,9 @@ export const signup = async (req: Request, res: Response) => {
           .status(500)
           .json({ success: false, message: "Session creation failed" });
       }
-      await sendVerificationEmail(email, verificationToken);
+      if (process.env.NODE_ENV === "production") {
+        await sendVerificationEmail(email, verificationToken);
+      }
 
       return res.status(201).json({
         success: true,
@@ -143,7 +145,9 @@ export const resendTokenEmail = async (req: Request, res: Response) => {
 
     await user.save();
 
-    await sendVerificationEmail(user.email, verificationToken);
+    if (process.env.NODE_ENV === "production") {
+      await sendVerificationEmail(user.email, verificationToken);
+    }
 
     res.json({
       success: true,
@@ -225,10 +229,12 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
     await user.save();
 
-    await sendPasswordResetEmail(
-      user.email,
-      `${process.env.CLIENT_URL}/reset-password/${resetPasswordToken}`
-    );
+    if (process.env.NODE_ENV === "production") {
+      await sendPasswordResetEmail(
+        user.email,
+        `${process.env.CLIENT_URL}/reset-password/${resetPasswordToken}`
+      );
+    }
 
     res.json({
       success: true,
@@ -273,8 +279,9 @@ export const resetPassword = async (req: Request, res: Response) => {
     user.resetPasswordExpiresAt = undefined;
 
     await user.save();
-
-    await sendResetSuccessEmail(user.email);
+    if (process.env.NODE_ENV === "production") {
+      await sendResetSuccessEmail(user.email);
+    }
 
     res.json({ success: true, message: "Password updated successfully" });
   } catch (error) {

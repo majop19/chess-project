@@ -46,7 +46,7 @@ export const MenuLayout = () => {
       className="w-20"
     >
       <NavigationMenuList className="w-20 fixed z-300">
-        <NavigationMenuItem className=" w-10 h-10 ">
+        <NavigationMenuItem className="w-10 h-10">
           <div className="flex gap-2 mt-5 text-2xl font-bold items-center">
             <NavigationMenuTrigger asChild>
               <Avatar className="h-14 w-14">

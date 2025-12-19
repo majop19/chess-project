@@ -20,10 +20,13 @@ import CountUp from "#front/components/CountUp";
 import GradientText from "#front/components/GradientText";
 import { cn } from "#front/lib/utils";
 import { SignalHigh } from "lucide-react";
+import { useBoardSize } from "#front/hooks/use-BoardSize.ts";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
 
 export const Page = () => {
   const pageContext = usePageContext();
-
+  const { width } = useBoardSize();
+  const isMobile = useIsMobile();
   // @ts-expect-error -- fix type
   const userElo = pageContext.user?.chessProfile.elo.problem;
 
@@ -31,27 +34,23 @@ export const Page = () => {
   console.log("render page");
   return (
     <PuzzlesProvider>
-      <div className="w-full h-full flex justify-center items-center gap-15">
-        <div className="flex items-center">
+      <div
+        className={cn(
+          "w-full h-full flex justify-center items-center",
+          isMobile ? "flex-col" : "gap-15"
+        )}
+      >
+        <div
+          className={cn(
+            isMobile ? "absolute flex justify-center items-center" : ""
+          )}
+        >
           <PuzzleBoard />
         </div>
-        <Card className="w-1/5 bg-card h-[800px]">
-          <CardHeader className="flex justify-center gap-5 mt-3">
-            <img
-              src="https://www.chess.com/bundles/web/images/color-icons/puzzle-piece.svg"
-              height={40}
-            ></img>
-            <CardTitle className="text-center font-bold text-5xl mt-2">
-              Puzzle
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col justify-end items-end w-full">
-            <div className="flex font-bold text-2xl mb-auto w-full justify-between">
-              <PuzzleTimer />
-              <div className="flex">
-                <SignalHigh size={30} />
-                <p>{userElo?.rating}</p>
-              </div>
+        {isMobile ? (
+          <>
+            <div className="relative top-60">
+              <GameStatus />
             </div>
             <UserEloHandler
               userElo={{
@@ -59,11 +58,38 @@ export const Page = () => {
                 ratingDeviation: userElo.ratingDeviation,
               }}
             />
-          </CardContent>
-          <CardFooter className="bg-input h-1/7 mt-auto flex flex-col">
-            <GameStatus />
-          </CardFooter>
-        </Card>
+          </>
+        ) : (
+          <Card className="w-1/5 bg-card h-[800px]">
+            <CardHeader className="flex justify-center gap-5 mt-3">
+              <img
+                src="https://www.chess.com/bundles/web/images/color-icons/puzzle-piece.svg"
+                height={width > 1280 ? 40 : 30}
+              ></img>
+              <CardTitle className="text-center font-bold text-3xl mt-2 xl:text-5xl">
+                Puzzle
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col justify-end items-end w-full">
+              <div className="flex font-bold text-2xl mb-auto w-full justify-between">
+                <PuzzleTimer />
+                <div className="flex">
+                  <SignalHigh size={30} />
+                  <p>{userElo?.rating}</p>
+                </div>
+              </div>
+              <UserEloHandler
+                userElo={{
+                  rating: userElo.rating,
+                  ratingDeviation: userElo.ratingDeviation,
+                }}
+              />
+            </CardContent>
+            <CardFooter className="bg-input h-1/7 mt-auto flex flex-col">
+              <GameStatus />
+            </CardFooter>
+          </Card>
+        )}
       </div>
     </PuzzlesProvider>
   );
@@ -165,7 +191,7 @@ const UserEloHandler = ({
   console.log("elo", elo, gameStatus, soluceRef.current.isProblemFinished);
   if (gameStatus === null && !soluceRef.current.isProblemFinished) return null;
   return (
-    <div className="w-full h-full flex justify-center items-center gap-3">
+    <div className={cn("w-full flex justify-center items-center relative")}>
       {elo ? (
         <div className="flex">
           <GradientText

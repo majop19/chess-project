@@ -3,6 +3,8 @@ import { ChevronRight } from "lucide-react";
 import { usePuzzlesContext } from "#front/context/PuzzleContext";
 import { Chess } from "chess.js";
 import { PuzzleType } from "#front/utils/types";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
+import { cn } from "#front/lib/utils.ts";
 
 export const GameStatus = () => {
   const {
@@ -16,7 +18,7 @@ export const GameStatus = () => {
     setHint,
     mutation,
   } = usePuzzlesContext();
-
+  const isMobile = useIsMobile();
   const RestartPuzzles = () => {
     const puzzle: PuzzleType = JSON.parse(
       window.localStorage.getItem("puzzle") || "{}"
@@ -71,38 +73,48 @@ export const GameStatus = () => {
 
   if (gameStatus == null)
     return (
-      <Button
-        className="w-full font-bold text-2xl h-12 mt-5"
-        onClick={() => {
-          setHint(true);
-          soluceRef.current.isHintUsed = true;
-        }}
-        variant="outline"
-        disabled={soluceRef.current.isHintUsed}
-      >
-        <svg
-          viewBox="0 0 32 32"
-          height="35"
-          width="35"
-          aria-hidden="true"
-          data-glyph="device-bulb-glow"
-          xmlns="http://www.w3.org/2000/svg"
-          className="text-primary-foreground hover:text-accent"
-          fill="currentColor"
+      <div className="w-full">
+        <Button
+          className={cn(
+            "font-bold text-2xl h-12 mt-5",
+            isMobile ? "w-5/6" : "w-full"
+          )}
+          onClick={() => {
+            setHint(true);
+            soluceRef.current.isHintUsed = true;
+          }}
+          variant="outline"
+          disabled={soluceRef.current.isHintUsed}
         >
-          <path
-            className="text-primary hover:text-primary-foreground"
+          <svg
+            viewBox="0 0 32 32"
+            height="35"
+            width="35"
+            aria-hidden="true"
+            data-glyph="device-bulb-glow"
             xmlns="http://www.w3.org/2000/svg"
-            d="M12.333 22.233V24h7.334v-1.767c0-2.2 3.066-3.766 3.066-7.666C22.733 10.767 19.8 8 16 8s-6.733 2.767-6.733 6.567c0 3.9 3.066 5.466 3.066 7.666M7.567 12.7c.3-.767-.1-1.633-.9-1.9-.767-.3-1.634.1-1.9.9-.3.767.1 1.633.9 1.9.766.3 1.633-.1 1.9-.9m2.866-4.6c.7-.5.867-1.433.367-2.1-.467-.7-1.4-.833-2.067-.367-.7.467-.866 1.4-.366 2.1.466.667 1.4.834 2.066.367M16 6.333c.833 0 1.5-.666 1.5-1.5 0-.833-.667-1.5-1.5-1.5s-1.5.667-1.5 1.5c0 .834.667 1.5 1.5 1.5m8.4 6.367c.3.8 1.133 1.2 1.933.9a1.536 1.536 0 0 0 .9-1.933 1.55 1.55 0 0 0-1.933-.9c-.8.3-1.2 1.166-.9 1.933m-2.867-4.6c.7.467 1.6.3 2.1-.367.467-.7.3-1.633-.366-2.1-.7-.466-1.634-.3-2.1.367-.467.7-.3 1.6.366 2.1M18.8 26h-5.533c.333 1.5 1.7 2.1 2.766 2.1s2.434-.6 2.767-2.1"
-          ></path>
-        </svg>
-        Hint
-      </Button>
+            className="text-primary-foreground hover:text-accent"
+            fill="currentColor"
+          >
+            <path
+              className="text-primary hover:text-primary-foreground"
+              xmlns="http://www.w3.org/2000/svg"
+              d="M12.333 22.233V24h7.334v-1.767c0-2.2 3.066-3.766 3.066-7.666C22.733 10.767 19.8 8 16 8s-6.733 2.767-6.733 6.567c0 3.9 3.066 5.466 3.066 7.666M7.567 12.7c.3-.767-.1-1.633-.9-1.9-.767-.3-1.634.1-1.9.9-.3.767.1 1.633.9 1.9.766.3 1.633-.1 1.9-.9m2.866-4.6c.7-.5.867-1.433.367-2.1-.467-.7-1.4-.833-2.067-.367-.7.467-.866 1.4-.366 2.1.466.667 1.4.834 2.066.367M16 6.333c.833 0 1.5-.666 1.5-1.5 0-.833-.667-1.5-1.5-1.5s-1.5.667-1.5 1.5c0 .834.667 1.5 1.5 1.5m8.4 6.367c.3.8 1.133 1.2 1.933.9a1.536 1.536 0 0 0 .9-1.933 1.55 1.55 0 0 0-1.933-.9c-.8.3-1.2 1.166-.9 1.933m-2.867-4.6c.7.467 1.6.3 2.1-.367.467-.7.3-1.633-.366-2.1-.7-.466-1.634-.3-2.1.367-.467.7-.3 1.6.366 2.1M18.8 26h-5.533c.333 1.5 1.7 2.1 2.766 2.1s2.434-.6 2.767-2.1"
+            ></path>
+          </svg>
+          Hint
+        </Button>
+      </div>
     );
 
   if (gameStatus == false)
     return (
-      <div className="w-full flex justify-evenly mt-3 gap-3">
+      <div
+        className={cn(
+          "w-full flex ",
+          isMobile ? "relative" : "mt-3 gap-3 justify-evenly"
+        )}
+      >
         <Button
           className="w-2/7 bg-green-500"
           variant="ghost"
@@ -153,7 +165,7 @@ export const GameStatus = () => {
     );
 
   return (
-    <div className="w-full flex justify-evenly mt-3">
+    <div className={cn("w-full flex justify-evenly", isMobile ? "" : "mt-3")}>
       <Button className="w-1/3" variant="secondary" onClick={RestartPuzzles}>
         <svg
           viewBox="0 0 32 32"

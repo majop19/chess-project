@@ -49,7 +49,7 @@ export const Page = () => {
 
   if (isTokenExpired) {
     return (
-      <Card className="w-md">
+      <Card className="w-90 sm:w-md">
         <CardHeader>
           <CardTitle className="text-center text-2xl">
             Your token has expired
@@ -73,7 +73,7 @@ export const Page = () => {
   }
 
   return (
-    <Card className="w-md">
+    <Card className="w-90 sm:w-md">
       <CardHeader className="text-center text-3xl">
         <CardTitle>Verify your Email</CardTitle>
         <CardDescription>I sent a code to {user?.email}</CardDescription>

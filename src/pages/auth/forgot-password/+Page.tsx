@@ -44,7 +44,7 @@ export const Page = () => {
   };
 
   return (
-    <Card className="w-md">
+    <Card className="w-90 sm:w-md">
       <CardHeader className="text-center text-3xl">
         <CardTitle>Forgot Password</CardTitle>
         <CardDescription>

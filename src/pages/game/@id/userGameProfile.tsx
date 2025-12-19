@@ -14,6 +14,8 @@ import { render } from "vike/abort";
 import { ObjectId } from "mongoose";
 import { useChessGameContext } from "#front/context/ChessGameContext";
 import { cn } from "#front/lib/utils";
+import { useBoardSize } from "#front/hooks/use-BoardSize.ts";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
 
 function renderPiece(piece: string) {
   const pieces = {
@@ -37,7 +39,8 @@ export const UserGameProfile = ({
   player: "whiteTime" | "blackTime";
 }) => {
   const { chessGame } = useChessGameContext();
-
+  const { width } = useBoardSize();
+  const isMobile = useIsMobile();
   // Count captured pieces
   const fen = chessGame.fen();
   const pieces = {
@@ -108,7 +111,20 @@ export const UserGameProfile = ({
   };
 
   return (
-    <div className="flex gap-3 w-[800px] items-center h-20">
+    <div
+      className={cn(
+        "flex gap-3 items-center h-20",
+        width > 1400
+          ? "w-[800px]"
+          : width > 1280
+          ? "w-[700px]"
+          : width > 1180
+          ? "w-[600px]"
+          : isMobile
+          ? `w-[${width - 20}px]`
+          : "w-[500px]"
+      )}
+    >
       <Avatar className="size-11 rounded-md">
         <AvatarImage src={user.image ?? undefined} />
         <AvatarFallback className="bg-secondary text-2xl font-semibold rounded-md capitalize">
@@ -145,7 +161,7 @@ export const GameTimer = ({
   const isRunning =
     timersState.isRunning[player == "whiteTime" ? "white" : "black"];
   const playerTime = game[player];
-
+  const isMobile = useIsMobile();
   function formatTime(ms: number) {
     // Calculer les minutes, secondes et dixièmes de seconde
     const totalSeconds = ms / 1000;
@@ -218,9 +234,14 @@ export const GameTimer = ({
   ]);
 
   return (
-    <div className="w-45 h-12 bg-board-black flex items-center text-4xl font-semibold text-foreground pr-2 justify-end relative ml-auto">
+    <div
+      className={cn(
+        "h-12 bg-board-black flex items-center text-4xl font-semibold text-foreground pr-2 justify-end relative ml-auto",
+        isMobile ? "w-36" : "w-45"
+      )}
+    >
       {timersState.isRunning[player == "whiteTime" ? "white" : "black"] ? (
-        <AlarmClock size={45} className="absolute left-0 p-2" />
+        <AlarmClock size={isMobile ? 36 : 45} className="absolute left-0 p-2" />
       ) : null}
       <Coutdown {...time} />
     </div>

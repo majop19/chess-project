@@ -22,7 +22,6 @@ import {
 import { useChessGameContext } from "#front/context/ChessGameContext";
 import { Chess } from "chess.js";
 import { usePageContext } from "vike-react/usePageContext";
-
 import { calculateChessGameElo } from "#front/utils/calculateChessGameElo";
 import { reload } from "vike/client/router";
 import {
@@ -33,13 +32,16 @@ import {
 import { useUserWaitingRoom } from "#front/hooks/use-userWaitingRoom";
 import { IMove, UserGuardPageContext } from "#front/utils/types";
 import { bufferToObjectId } from "#front/utils/bufferToHex.function.ts";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
+import { useBoardSize } from "#front/hooks/use-BoardSize.ts";
 
 export const GameLayout = ({ socket }: { socket: SocketClientType }) => {
   const { game, white, black } = useData<GameData>();
   const [moves, setMoves] = useState<IMove[]>(game.moves);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { chessGame, setChessGame } = useChessGameContext();
-
+  const isMobile = useIsMobile();
+  const { width } = useBoardSize();
   const handleChessPositionChange = (
     position: "start" | "end" | "backward" | "forward"
   ) => {
@@ -121,90 +123,136 @@ export const GameLayout = ({ socket }: { socket: SocketClientType }) => {
     };
   }, [socket, game.moves, white.elo.rating, black.elo.rating]);
 
-  return (
-    <div className="w-full h-full">
-      <Card className="h-[800px]">
-        <CardContent className="h-full p-0">
-          <CardHeader></CardHeader>
-          <ScrollArea
-            className={cn(
-              "h-[480px] w-full border-y-4 py-3 border-foreground text-foreground m-auto",
-              game.status != "active" ? "h-[310px]" : "h-[480px]"
-            )}
-            ref={scrollRef}
+  if (isMobile) {
+    return (
+      <div className="w-full flex justify-center items-center flex-col">
+        <GameisFinishedButton
+          socket={socket}
+          ButtonStyle="w-[45%] mx-1 mb-4 h-12"
+          ContainerStyle="flex w-full gap-2 justify-center"
+        />
+        <div className="flex w-1/2 justify-center gap-2">
+          <Button
+            className="w-1/2 h-12"
+            onClick={() => handleChessPositionChange("backward")}
           >
-            <div className="h-1/2 w-full">
-              {movePairs.map(({ number, white, black }, index) => (
-                <div
-                  key={number}
-                  className={cn(
-                    "flex font-bold text-xl w-full",
-                    number % 2 === 0 ? "bg-secondary" : ""
-                  )}
+            <ChevronLeft size={36} />
+          </Button>
+          <Button
+            className="w-1/2 h-12"
+            onClick={() => handleChessPositionChange("forward")}
+          >
+            <ChevronRight size={36} />
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-1/4 mr-10 min-w-1/4">
+      <div className="w-full h-full">
+        <Card
+          className={cn(
+            width > 1400
+              ? "h-200"
+              : width > 1280
+              ? "h-175"
+              : width > 1180
+              ? "h-150"
+              : "h-125"
+          )}
+        >
+          <CardContent className="h-full p-0">
+            <CardHeader></CardHeader>
+            <ScrollArea
+              className={cn(
+                "h-120 w-full border-y-4 py-3 border-foreground text-foreground m-auto",
+                game.status != "active"
+                  ? width > 1400
+                    ? "h-77.5"
+                    : width > 1280
+                    ? "h-58"
+                    : width > 1180
+                    ? "h-50"
+                    : "h-41"
+                  : "h-120"
+              )}
+              ref={scrollRef}
+            >
+              <div className="h-1/2 w-full">
+                {movePairs.map(({ number, white, black }, index) => (
+                  <div
+                    key={number}
+                    className={cn(
+                      "flex font-bold text-xl w-full",
+                      number % 2 === 0 ? "bg-secondary" : ""
+                    )}
+                  >
+                    <span className="ml-4 w-6 text-center">{number}.</span>
+                    <span
+                      className={cn(
+                        "w-15 text-center mr-10 ml-8",
+                        index == movePairs.length - 1 &&
+                          black == null &&
+                          "bg-foreground text-primary-foreground"
+                      )}
+                    >
+                      {white ? formatMove(white) : ""}
+                    </span>
+                    <span
+                      className={cn(
+                        "w-15 text-center mr-auto",
+                        index == movePairs.length - 1 &&
+                          black != null &&
+                          "bg-foreground text-primary-foreground"
+                      )}
+                    >
+                      {black ? formatMove(black) : ""}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </ScrollArea>
+            <div className="w-full flex flex-col justify-evenly mt-2 border-b-2 border-foreground h-1/4 items-center min-h-32">
+              <GameisFinishedButton
+                socket={socket}
+                ButtonStyle="w-[45%] mx-1 mb-4 h-12"
+                ContainerStyle="flex w-full gap-2 justify-center"
+              />
+              <div className="flex justify-evenly w-full">
+                <Button
+                  className="w-1/5 h-12"
+                  onClick={() => handleChessPositionChange("start")}
                 >
-                  <span className="ml-4 w-6 text-center">{number}.</span>
-                  <span
-                    className={cn(
-                      "w-15 text-center mr-10 ml-8",
-                      index == movePairs.length - 1 &&
-                        black == null &&
-                        "bg-foreground text-primary-foreground"
-                    )}
-                  >
-                    {white ? formatMove(white) : ""}
-                  </span>
-                  <span
-                    className={cn(
-                      "w-15 text-center mr-auto",
-                      index == movePairs.length - 1 &&
-                        black != null &&
-                        "bg-foreground text-primary-foreground"
-                    )}
-                  >
-                    {black ? formatMove(black) : ""}
-                  </span>
-                </div>
-              ))}
+                  <ChevronFirst size={36} />
+                </Button>
+                <Button
+                  className="w-1/5 h-12"
+                  onClick={() => handleChessPositionChange("backward")}
+                >
+                  <ChevronLeft size={36} />
+                </Button>
+                <Button
+                  className="w-1/5 h-12"
+                  onClick={() => handleChessPositionChange("forward")}
+                >
+                  <ChevronRight size={36} />
+                </Button>
+                <Button
+                  className="w-1/5 h-12"
+                  onClick={() => handleChessPositionChange("end")}
+                >
+                  <ChevronLast size={36} />
+                </Button>
+              </div>
             </div>
-          </ScrollArea>
-          <div className="w-full flex flex-col justify-evenly mt-2 border-b-2 border-foreground h-1/4 items-center">
-            <GameisFinishedButton
-              socket={socket}
-              ButtonStyle="w-[45%] mx-1 mb-4 h-12"
-              ContainerStyle="flex w-full gap-2 justify-center"
-            />
-            <div className="flex justify-evenly w-full">
-              <Button
-                className="w-1/5 h-12"
-                onClick={() => handleChessPositionChange("start")}
-              >
-                <ChevronFirst size={36} />
-              </Button>
-              <Button
-                className="w-1/5 h-12"
-                onClick={() => handleChessPositionChange("backward")}
-              >
-                <ChevronLeft size={36} />
-              </Button>
-              <Button
-                className="w-1/5 h-12"
-                onClick={() => handleChessPositionChange("forward")}
-              >
-                <ChevronRight size={36} />
-              </Button>
-              <Button
-                className="w-1/5 h-12"
-                onClick={() => handleChessPositionChange("end")}
-              >
-                <ChevronLast size={36} />
-              </Button>
-            </div>
-          </div>
-          <CardFooter>
-            <ChessGameEloLayout socket={socket} />
-          </CardFooter>
-        </CardContent>
-      </Card>
+            <CardFooter>
+              <ChessGameEloLayout socket={socket} />
+            </CardFooter>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
@@ -315,11 +363,13 @@ export const GameisFinishedButton = ({
   socket,
   ButtonStyle,
   ContainerStyle,
+  iconSize,
   setIsOpen,
 }: {
   socket: SocketClientType;
   ButtonStyle?: string;
   ContainerStyle?: string;
+  iconSize?: number;
   setIsOpen?: (isOpen: boolean) => void;
 }) => {
   const [rematchInvitation, setRematchInvitation] = useState<boolean>(false);
@@ -397,7 +447,7 @@ export const GameisFinishedButton = ({
               }}
               disabled={mutation.isPending}
             >
-              <Plus size={36} />
+              <Plus size={iconSize ?? 36} />
               New {game.timeControl} min
             </Button>
             <Popover open={rematchProposition}>
@@ -421,7 +471,7 @@ export const GameisFinishedButton = ({
                     rematchInvitation == true || rematchProposition == true
                   }
                 >
-                  <RotateCcw size={30} />
+                  <RotateCcw size={iconSize ?? 30} />
                   Rematch
                 </Button>
               </PopoverTrigger>

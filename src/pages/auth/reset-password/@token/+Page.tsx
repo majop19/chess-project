@@ -82,7 +82,7 @@ export const Page = () => {
   };
 
   return (
-    <Card className="w-md relative">
+    <Card className="w-90 sm:w-md relative">
       <CardHeader className="text-center text-3xl">
         <CardTitle>Reset Password</CardTitle>
         <CardDescription>

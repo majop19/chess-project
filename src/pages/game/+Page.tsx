@@ -24,6 +24,10 @@ import {
   AvatarImage,
 } from "#front/components/ui/avatar";
 import { bufferToObjectId } from "#front/utils/bufferToHex.function";
+import { useBoardSize } from "#front/hooks/use-BoardSize.ts";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
+import { cn } from "#front/lib/utils.ts";
+
 export const Page = () => {
   const pageContext = usePageContext();
   const [currentTimer, setCurrentTimer] = useState<ChessGameTimerType>({
@@ -32,7 +36,8 @@ export const Page = () => {
   });
   const [isTimersOpen, setIsTimersOpen] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
-
+  const { width } = useBoardSize();
+  const isMobile = useIsMobile();
   const increment =
     currentTimer.timeIncrement != 0
       ? ` | ${currentTimer.timeIncrement}`
@@ -77,47 +82,93 @@ export const Page = () => {
   console.log("mutation", isWaiting);
   return (
     <div className="flex justify-center gap-10 items-center h-full w-full">
-      <div>
-        <div className="flex flex-items gap-2 w-[800px] items-center h-[70px]">
-          <Avatar className="size-13">
-            <AvatarImage src="player.png" className="p-1" />
-            <AvatarFallback></AvatarFallback>
-          </Avatar>
-          <p className="font-medium text-xl">Opponent</p>
-          <div className="w-45 h-12 bg-card flex items-center text-4xl font-semibold justify-end pr-3 relative ml-auto">
-            {playerTimer}
+      {!isMobile ? (
+        <div>
+          <div
+            className={cn(
+              "flex flex-items gap-2 items-center h-[70px]",
+              width > 1400
+                ? "w-[800px]"
+                : width > 1280
+                ? "w-[700px]"
+                : width > 1180
+                ? "w-[600px]"
+                : isMobile
+                ? `w-[${width - 20}px]`
+                : "w-[500px]"
+            )}
+          >
+            <Avatar className="size-13">
+              <AvatarImage src="player.png" className="p-1" />
+              <AvatarFallback></AvatarFallback>
+            </Avatar>
+            <p className="font-medium text-xl">Opponent</p>
+            <div className="w-45 h-12 bg-card flex items-center text-4xl font-semibold justify-end pr-3 relative ml-auto">
+              {playerTimer}
+            </div>
+          </div>
+          <Chessboard
+            boardWidth={
+              width > 1400
+                ? 800
+                : width > 1280
+                ? 700
+                : width > 1180
+                ? 600
+                : isMobile
+                ? width - 20
+                : 500
+            }
+            arePiecesDraggable={false}
+            customDarkSquareStyle={{
+              backgroundColor: "var(--color-board-black)",
+            }}
+            customLightSquareStyle={{
+              backgroundColor: "var(--color-board-white)",
+            }}
+            customNotationStyle={{ fontSize: "17px", fontWeight: "600" }}
+          />
+          <div
+            className={cn(
+              "flex flex-items gap-2 items-center h-[70px]",
+              width > 1400
+                ? "w-[800px]"
+                : width > 1280
+                ? "w-[700px]"
+                : width > 1180
+                ? "w-[600px]"
+                : isMobile
+                ? `w-[${width - 20}px]`
+                : "w-[500px]"
+            )}
+          >
+            <Avatar className="h-11 w-11 rounded-md">
+              <AvatarImage src={user.image ?? undefined} />
+              <AvatarFallback className="font-semibold bg-secondary rounded-md text-2xl">
+                {user.name[0]}
+              </AvatarFallback>
+            </Avatar>
+            <p className="font-medium text-xl">{user.name}</p>
+            <div className="w-45 h-12 bg-card flex items-center text-4xl font-semibold  justify-end pr-3 relative ml-auto">
+              {playerTimer}
+            </div>
           </div>
         </div>
-        <Chessboard
-          boardWidth={800}
-          arePiecesDraggable={false}
-          customDarkSquareStyle={{
-            backgroundColor: "var(--color-board-black)",
-          }}
-          customLightSquareStyle={{
-            backgroundColor: "var(--color-board-white)",
-          }}
-          customNotationStyle={{ fontSize: "17px", fontWeight: "600" }}
-        />
-        <div className="flex flex-items gap-2 w-[800px] items-center h-[70px]">
-          <Avatar className="h-11 w-11 rounded-md">
-            <AvatarImage src={user.image ?? undefined} />
-            <AvatarFallback className="font-semibold bg-secondary rounded-md text-2xl">
-              {user.name[0]}
-            </AvatarFallback>
-          </Avatar>
-          <p className="font-medium text-xl">{user.name}</p>
-          <div className="w-45 h-12 bg-card flex items-center text-4xl font-semibold  justify-end pr-3 relative ml-auto">
-            {playerTimer}
-          </div>
-        </div>
-      </div>
-      <Card className="w-1/4 h-[940px]">
+      ) : null}
+      <Card
+        className={cn(
+          "h-[940px]",
+          isMobile ? "w-3/4 h-fit" : "w-1/4 h-[940px]"
+        )}
+      >
         <CardHeader className="w-full">
           <div className="flex justify-center">
             <Button
               onClick={() => setIsTimersOpen((curr) => !curr)}
-              className="w-full m-2 text-xl font-bold h-14 p-4"
+              className={cn(
+                "w-full text-xl font-bold h-14 p-4",
+                isMobile ? "" : "m-2"
+              )}
               variant="outline"
               disabled={isWaiting}
             >
@@ -139,7 +190,7 @@ export const Page = () => {
             </Button>
           </div>
         </CardHeader>
-        <CardContent className="p-2">
+        <CardContent className={cn("h-full", isMobile ? "" : "p-2")}>
           {isTimersOpen ? (
             <div className="w-full">
               <TimersVariant
@@ -161,7 +212,10 @@ export const Page = () => {
           ) : null}
           <div className="flex justify-center">
             <Button
-              className="w-full m-2 text-xl font-bold h-14 p-4"
+              className={cn(
+                "w-full text-xl font-bold h-14 p-4",
+                isMobile ? "m-2" : "m-2"
+              )}
               onClick={() => handleTimerClick(currentTimer)}
             >
               {isWaiting ? "Cancel Search" : "Start Game"}

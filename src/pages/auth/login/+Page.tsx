@@ -68,7 +68,10 @@ export const Page = () => {
 
   return (
     <Card
-      className={cn(mutation.isPending ? "opacity-50" : null, "w-md relative")}
+      className={cn(
+        mutation.isPending ? "opacity-50" : null,
+        "w-90 relative sm:w-md"
+      )}
     >
       <CardHeader className="text-center text-3xl">
         <CardTitle>Welcome back</CardTitle>
@@ -136,7 +139,7 @@ export const Page = () => {
             />
             <Button
               type="submit"
-              className="pt-3 w-96 text-md mt-2"
+              className="pt-3 w-78 text-md mt-2 sm:w-full"
               disabled={mutation.isPending}
             >
               Submit
@@ -144,7 +147,7 @@ export const Page = () => {
           </form>
         </Form>
         {mutation.error ? (
-          <p className="font-semibold text-destructive m-auto text-lg">
+          <p className="font-semibold text-destructive m-auto text-lg text-center">
             {mutation.error.message}
           </p>
         ) : null}

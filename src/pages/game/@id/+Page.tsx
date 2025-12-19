@@ -8,8 +8,11 @@ import { ChessGame } from "./chessGame";
 import { GameLayout } from "./gameLayout";
 import { DialogEndGame } from "./DialogEndGame";
 import { bufferToObjectId } from "#front/utils/bufferToHex.function.ts";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
+import { cn } from "#front/lib/utils.ts";
 
 export const Page = () => {
+  const isMobile = useIsMobile();
   const pageContext = usePageContext();
   const { white, black, game } = useData<GameData>();
 
@@ -36,9 +39,20 @@ export const Page = () => {
   const gameId = bufferToObjectId(game._id);
 
   console.log(userSide, opponentSide, gameId);
+
   return (
-    <div className="flex justify-center gap-10 items-center h-full w-full">
-      <div className="flex flex-col mb-auto justify-end m-0">
+    <div
+      className={cn(
+        "flex justify-center gap-10 items-center h-full w-full",
+        isMobile ? "flex-col" : ""
+      )}
+    >
+      <div
+        className={cn(
+          "flex flex-col mb-auto m-0",
+          isMobile ? "" : "justify-end"
+        )}
+      >
         <UserGameProfile
           user={opponentSide == "whiteTime" ? white : black}
           player={opponentSide}
@@ -56,9 +70,7 @@ export const Page = () => {
           <GameTimer socket={socket} player={userSide} />
         </UserGameProfile>
       </div>
-      <div className="w-1/4 ml-10">
-        <GameLayout socket={socket} />
-      </div>
+      <GameLayout socket={socket} />
     </div>
   );
 };

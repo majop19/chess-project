@@ -78,7 +78,9 @@ export const Page = () => {
   };
 
   return (
-    <Card className={cn(mutation.isPending ? "opacity-50" : null, "w-md")}>
+    <Card
+      className={cn(mutation.isPending ? "opacity-50" : null, "sm:w-md w-90")}
+    >
       <CardHeader className="text-center text-3xl">
         <CardTitle>Signup</CardTitle>
         <CardDescription>
@@ -145,7 +147,7 @@ export const Page = () => {
             <PasswordStrengthMeter password={passwordStrenth} />
             <Button
               type="submit"
-              className="pt-3 w-96 text-md mt-2"
+              className="pt-3 w-78 text-md mt-2 sm:w-full"
               disabled={mutation.isPending}
             >
               Submit

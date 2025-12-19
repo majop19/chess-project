@@ -5,6 +5,8 @@ import { usePageContext } from "vike-react/usePageContext";
 import { usePuzzlesContext } from "#front/context/PuzzleContext";
 import { Chessboard } from "react-chessboard";
 import { PuzzleType } from "#front/utils/types";
+import { useBoardSize } from "#front/hooks/use-BoardSize.ts";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
 
 export const PuzzleBoard = () => {
   const {
@@ -247,23 +249,35 @@ export const PuzzleBoard = () => {
   };
 
   const squareStyles = customSquareStyles();
-
+  const { width } = useBoardSize();
+  const isMobile = useIsMobile();
   return (
-    <div>
-      <Chessboard
-        customSquareStyles={squareStyles}
-        position={puzzle?.fen() ?? undefined}
-        onPieceDrop={onDrop}
-        boardWidth={800}
-        boardOrientation={soluceRef.current.orientation}
-        customDarkSquareStyle={{
-          backgroundColor: "var(--color-board-black)",
-        }}
-        customLightSquareStyle={{
-          backgroundColor: "var(--color-board-white)",
-        }}
-        customNotationStyle={{ fontSize: "17px", fontWeight: "600" }}
-      />
-    </div>
+    <Chessboard
+      customSquareStyles={squareStyles}
+      position={puzzle?.fen() ?? undefined}
+      onPieceDrop={onDrop}
+      boardWidth={
+        width > 1400
+          ? 800
+          : width > 1280
+          ? 700
+          : width > 1180
+          ? 600
+          : isMobile
+          ? width - 20
+          : 500
+      }
+      boardOrientation={soluceRef.current.orientation}
+      customDarkSquareStyle={{
+        backgroundColor: "var(--color-board-black)",
+      }}
+      customLightSquareStyle={{
+        backgroundColor: "var(--color-board-white)",
+      }}
+      customNotationStyle={{
+        fontSize: isMobile ? "12px" : "17px",
+        fontWeight: "600",
+      }}
+    />
   );
 };
