@@ -8,7 +8,7 @@ export const GameSchema = new Schema<IGame>(
     blackId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     winner: { type: String, enum: ["white", "black", "draw", null] },
     timeControl: { type: Number, required: true, enum: [1, 3, 5, 10, 15] },
-    timeIncrement: { type: Number, required: true, enum: [0, 1, 3, 10] },
+    timeIncrement: { type: Number, required: true, enum: [0, 1, 2, 3, 10] },
     isRated: { type: Boolean, default: false },
     status: {
       type: String,

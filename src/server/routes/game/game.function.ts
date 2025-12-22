@@ -132,7 +132,10 @@ export const UpdateChessGame = async (
   const moveNumber =
     game.turn == "white" ? game.fullMoveNumber + 1 : game.fullMoveNumber;
   const playerTimer = game.turn == "white" ? game.whiteTime : game.blackTime;
-  const timer = playerTimer - (Date.now() - game.lastUpdateTime.getTime());
+  const timer =
+    playerTimer -
+    (Date.now() - game.lastUpdateTime.getTime()) +
+    game.timeIncrement * 1000;
   const move: IMove = new Move({
     moveNumber: moveNumber,
     color: game.turn,

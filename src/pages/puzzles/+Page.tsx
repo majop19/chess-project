@@ -27,6 +27,7 @@ export const Page = () => {
   const pageContext = usePageContext();
   const { width } = useBoardSize();
   const isMobile = useIsMobile();
+  console.log("isMobile in page", width, isMobile);
   // @ts-expect-error -- fix type
   const userElo = pageContext.user?.chessProfile.elo.problem;
 

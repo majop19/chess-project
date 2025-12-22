@@ -37,6 +37,7 @@ export const Page = () => {
   const [isTimersOpen, setIsTimersOpen] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
   const { width } = useBoardSize();
+  console.log("width", width);
   const isMobile = useIsMobile();
   const increment =
     currentTimer.timeIncrement != 0

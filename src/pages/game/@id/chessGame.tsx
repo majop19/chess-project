@@ -147,6 +147,7 @@ export const ChessGame = ({
     }
   }
 
+  console.log("width, isMobile", width, isMobile);
   return (
     <div className={cn("flex")}>
       <Chessboard
@@ -159,7 +160,7 @@ export const ChessGame = ({
             ? 700
             : width > 1180
             ? 600
-            : isMobile
+            : isMobile 
             ? width - 20
             : 500
         }

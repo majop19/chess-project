@@ -10,12 +10,14 @@ import { DialogEndGame } from "./DialogEndGame";
 import { bufferToObjectId } from "#front/utils/bufferToHex.function.ts";
 import { useIsMobile } from "#front/hooks/use-mobile.ts";
 import { cn } from "#front/lib/utils.ts";
+import { useBoardSize } from "#front/hooks/use-BoardSize.ts";
 
 export const Page = () => {
   const isMobile = useIsMobile();
+  const { width } = useBoardSize();
   const pageContext = usePageContext();
   const { white, black, game } = useData<GameData>();
-
+  console.log("width", width);
   const user = {
     // @ts-expect-error -- fix type
     ...pageContext.user,

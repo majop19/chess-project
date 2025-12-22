@@ -11,7 +11,7 @@ export type UserGuardPageContext = {
 
 export type TimeControlType = 1 | 3 | 5 | 10 | 15; // in minutes
 
-export type TimeIncrementType = 0 | 1 | 3 | 10; // in seconds
+export type TimeIncrementType = 0 | 1 | 2 | 3 | 10; // in seconds
 
 export type ChessGameTimerType = {
   timeControl: TimeControlType;
