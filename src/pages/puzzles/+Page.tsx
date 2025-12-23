@@ -49,17 +49,21 @@ export const Page = () => {
           <PuzzleBoard />
         </div>
         {isMobile ? (
-          <>
-            <div className="relative top-60">
-              <GameStatus />
+          <div className="relative top-60 w-60">
+            <GameStatus />
+            <div
+              className={cn(
+                "w-full h-0 flex justify-center items-center relative gap-3 bg-secondary"
+              )}
+            >
+              <UserEloHandler
+                userElo={{
+                  rating: userElo.rating,
+                  ratingDeviation: userElo.ratingDeviation,
+                }}
+              />
             </div>
-            <UserEloHandler
-              userElo={{
-                rating: userElo.rating,
-                ratingDeviation: userElo.ratingDeviation,
-              }}
-            />
-          </>
+          </div>
         ) : (
           <Card className="w-1/5 bg-card h-[800px]">
             <CardHeader className="flex justify-center gap-5 mt-3">
@@ -192,9 +196,9 @@ const UserEloHandler = ({
   console.log("elo", elo, gameStatus, soluceRef.current.isProblemFinished);
   if (gameStatus === null && !soluceRef.current.isProblemFinished) return null;
   return (
-    <div className={cn("w-full flex justify-center items-center relative")}>
+    <>
       {elo ? (
-        <div className="flex">
+        <div className="flex relative h-fit top-10">
           <GradientText
             className="font-black text-6xl"
             colors={[
@@ -224,6 +228,6 @@ const UserEloHandler = ({
           </p>
         </div>
       ) : null}
-    </div>
+    </>
   );
 };

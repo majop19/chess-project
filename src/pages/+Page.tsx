@@ -1,5 +1,6 @@
 import PrismaticBurst from "#front/components/PrismaticBurst";
 import { Button } from "#front/components/ui/button";
+import { useIsMobile } from "#front/hooks/use-mobile.ts";
 import { toast } from "sonner";
 import { usePageContext } from "vike-react/usePageContext";
 import { navigate } from "vike/client/router";
@@ -7,19 +8,21 @@ import { navigate } from "vike/client/router";
 const Page = () => {
   // @ts-expect-error -- fix type
   const { user, forbiddenAccessError } = usePageContext();
-
+  const isMobile = useIsMobile();
   if (forbiddenAccessError) {
     toast.error("You do not have permission to access this page.");
   }
   return (
     <div className="w-full h-full fixed">
-      <PrismaticBurst
-        animationType="rotate"
-        intensity={3}
-        speed={0.5}
-        distort={0}
-        paused={false}
-      />
+      {!isMobile ? (
+        <PrismaticBurst
+          animationType="rotate"
+          intensity={3}
+          speed={0.5}
+          distort={0}
+          paused={false}
+        />
+      ) : null}
       <div className="w-full h-full flex flex-col items-center justify-center absolute top-0 left-0">
         <h1 className="text-4xl font-bold text-center">
           Welcome to My ChessGame

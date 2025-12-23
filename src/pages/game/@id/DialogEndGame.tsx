@@ -17,6 +17,7 @@ import { navigate } from "vike/client/router";
 import { cn } from "#front/lib/utils.ts";
 import { useBoardSize } from "#front/hooks/use-BoardSize.ts";
 import { useIsMobile } from "#front/hooks/use-mobile.ts";
+import { useTimersContext } from "#front/hooks/use-context.ts";
 export const DialogEndGame = ({
   children,
   socket,
@@ -28,6 +29,8 @@ export const DialogEndGame = ({
   const { game } = useData<GameData>();
   const { width } = useBoardSize();
   const isMobile = useIsMobile();
+  const { endGame } = useTimersContext();
+
   useEffect(() => {
     function sendChessGameId() {
       setIsOpen(false);
@@ -35,13 +38,14 @@ export const DialogEndGame = ({
 
     if (game.status != "active") {
       setIsOpen(true);
+      endGame();
     }
 
     socket.on("sendChessGameId", sendChessGameId);
     return () => {
       socket.off("sendChessGameId", sendChessGameId);
     };
-  }, [game.status, socket]);
+  }, [game.status, endGame, socket]);
 
   console.log("render dialog");
   return (

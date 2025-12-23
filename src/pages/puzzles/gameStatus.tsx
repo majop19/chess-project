@@ -75,10 +75,7 @@ export const GameStatus = () => {
     return (
       <div className="w-full">
         <Button
-          className={cn(
-            "font-bold text-2xl h-12 mt-5",
-            isMobile ? "w-5/6" : "w-full"
-          )}
+          className={cn("font-bold text-2xl h-12 mt-5 w-full")}
           onClick={() => {
             setHint(true);
             soluceRef.current.isHintUsed = true;
@@ -111,8 +108,8 @@ export const GameStatus = () => {
     return (
       <div
         className={cn(
-          "w-full flex ",
-          isMobile ? "relative" : "mt-3 gap-3 justify-evenly"
+          "w-full flex",
+          isMobile ? "relative justify-evenly" : "mt-3 gap-3 justify-evenly"
         )}
       >
         <Button

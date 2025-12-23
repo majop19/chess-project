@@ -41,13 +41,16 @@ export const PuzzleBoard = () => {
     const isCorrect =
       soluceRef.current.soluce[index + 1] ==
       sourceSquare + targetSquare + promotion;
-
-    const move = puzzle.move({
-      from: sourceSquare,
-      to: targetSquare,
-      promotion: promotion,
-    });
-
+    let move = null;
+    try {
+      move = puzzle.move({
+        from: sourceSquare,
+        to: targetSquare,
+        promotion: promotion,
+      });
+    } catch {
+      console.log("invalid move");
+    }
     if (move == null) return false;
 
     lastsquareMoveRef.current = {
