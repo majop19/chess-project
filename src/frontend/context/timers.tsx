@@ -106,10 +106,8 @@ export const TimersProvider = ({
   };
 
   const endGame = () => {
-    const player = timersState.isRunning.white ? "whiteTime" : "blackTime";
     setTimersState((curr) => ({
       ...curr,
-      [player]: 0,
       isRunning: { white: false, black: false },
     }));
   };
