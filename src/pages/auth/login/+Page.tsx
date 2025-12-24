@@ -35,10 +35,12 @@ type FormSchemaType = z.infer<typeof LoginFormSchema>;
 
 export const Page = () => {
   // @ts-expect-error -- fix type
-  const { loginAccessError } = usePageContext();
+  let { loginAccessError } = usePageContext();
 
   if (loginAccessError) {
+    console.log("show toast");
     toast.error("You must be logged in to access this page.");
+    loginAccessError = false;
   }
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm<FormSchemaType>({
@@ -66,6 +68,7 @@ export const Page = () => {
     mutation.mutate(values);
   };
 
+  console.log("render", loginAccessError);
   return (
     <Card
       className={cn(

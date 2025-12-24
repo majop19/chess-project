@@ -19,7 +19,6 @@ export function useBoardSize() {
         setBreakpoint(6);
       }
     };
-
     window.addEventListener("resize", updateBreakpoint); // Écoute les changements de taille
 
     return () => window.removeEventListener("resize", updateBreakpoint);

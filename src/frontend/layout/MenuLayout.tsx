@@ -11,6 +11,7 @@ import {
 } from "#front/components/ui/navigation-menu";
 
 import { useIsMobile } from "#front/hooks/use-mobile";
+import { cn } from "#front/lib/utils.ts";
 import {
   NavigationMenuContent,
   NavigationMenuTrigger,
@@ -61,7 +62,9 @@ export const MenuLayout = () => {
             </NavigationMenuTrigger>
             <h1>Menu</h1>
           </div>
-          <NavigationMenuContent className="h-[300px] w-fit">
+          <NavigationMenuContent
+            className={cn("w-fit", isMobile ? "h-75 mt-12" : "h-75")}
+          >
             {user == null ? (
               <Button
                 className="text-xl font-bold my-5"

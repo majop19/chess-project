@@ -10,7 +10,7 @@ export const BoardLayout = ({ children }: { children: ReactNode }) => {
       <div className="w-full h-screen bg-background">
         <div
           className={clsx(
-            "h-full flex justify-center items-center relative ",
+            "h-full flex justify-center items-center relative",
             BoardSize === 6
               ? "w-[length:calc(100vw+3rem-(6*(100vh/10)))]"
               : BoardSize === 4

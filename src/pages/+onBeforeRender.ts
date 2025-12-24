@@ -8,6 +8,7 @@ export const onBeforeRender = (pageContext: PageContextServer) => {
     pageContext: {
       // @ts-expect-error -- fix type
       user: pageContext.user,
+      forbiddenAccessError: false,
     },
   };
 };
