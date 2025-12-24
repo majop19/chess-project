@@ -39,8 +39,6 @@ export const DialogEndGame = ({
     if (game.status != "active") {
       console.log("modale")
       setIsOpen(true);
-      if (game.status != "timeout")
-      endGame();
     }
 
     socket.on("sendChessGameId", sendChessGameId);

@@ -209,9 +209,11 @@ export const GameTimer = ({
     }
     socket.on("sendChessGameMove", NewMove);
     socket.on("sendChessGameId", sendChessGameId);
+    socket.on("endChessGame", endGame)
     return () => {
       socket.off("sendChessGameMove", NewMove);
       socket.off("sendChessGameId", sendChessGameId);
+      socket.off("endChessGame", endGame)
       clearInterval(interval);
     };
   }, [
