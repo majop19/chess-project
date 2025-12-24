@@ -168,15 +168,13 @@ export const GameLayout = ({ socket }: { socket: SocketClientType }) => {
             <ScrollArea
               className={cn(
                 "h-120 w-full border-y-4 py-3 border-foreground text-foreground m-auto",
-                game.status != "active"
-                  ? width > 1400
+                 width > 1400
                     ? "h-77.5"
                     : width > 1280
                     ? "h-58"
                     : width > 1180
                     ? "h-50"
                     : "h-41"
-                  : "h-120"
               )}
               ref={scrollRef}
             >

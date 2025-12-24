@@ -158,8 +158,14 @@ export const Page = () => {
       ) : null}
       <Card
         className={cn(
-          "h-[940px]",
-          isMobile ? "w-3/4 h-fit" : "w-1/4 h-[940px]"
+          width > 1400
+                ? "h-[800px]"
+                : width > 1280
+                ? "h-[700px]"
+                : width > 1180
+                ? "h-[600px]"
+                : "w-[500px]",
+          isMobile ? "w-3/4 h-fit" : "w-1/4"
         )}
       >
         <CardHeader className="w-full">

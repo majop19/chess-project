@@ -29,7 +29,7 @@ export const DialogEndGame = ({
   const { game } = useData<GameData>();
   const { width } = useBoardSize();
   const isMobile = useIsMobile();
-  const { endGame } = useTimersContext();
+  const { endGame} = useTimersContext();
 
   useEffect(() => {
     function sendChessGameId() {
@@ -37,7 +37,9 @@ export const DialogEndGame = ({
     }
 
     if (game.status != "active") {
+      console.log("modale")
       setIsOpen(true);
+      if (game.status != "timeout")
       endGame();
     }
 
